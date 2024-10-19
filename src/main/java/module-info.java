@@ -8,6 +8,8 @@ module retailRegister {
     requires static lombok;
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
+    opens project.controllers to javafx.controls, javafx.fxml, javafx.graphics, jakarta.persistence, org.hibernate.orm.core;
     opens project.entity to org.hibernate.orm.core;
+    opens project.handlers to org.hibernate.orm.core, jakarta.persistence;
     opens project;
 }

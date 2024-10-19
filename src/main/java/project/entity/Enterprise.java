@@ -26,8 +26,17 @@ public class Enterprise implements Serializable {
 
     private String type;
 
+    private String password;
+
+    @Column (name = "corp_email")
+    private String email;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "enterprise")
     private Collection<Employee> employees;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "enterprise")
+    private Collection<Product> products;
 
 }

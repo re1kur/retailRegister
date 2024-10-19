@@ -37,16 +37,18 @@ public class MainWindowController {
 
     @FXML
     void initialize () {
-        Handler.setIsEng(true);
-        mainWindow = Main.getMainStage();
+        if (!Handler.isEng()) {
+            setRussianGUI();
+        }
+        mainWindow = Handler.getMainStage();
         closeWindowBtn.setOnAction(_ -> closeWindow());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
-        introduceBtn.setOnAction(_ -> Handler.openInfoWindow(mainWindow));
+        introduceBtn.setOnAction(_ -> Handler.openIntroduceWindow());
     }
 
     private void changeLanguage () {
-        Handler.setIsEng(!Handler.getIsEng());
-        if (Handler.getIsEng()) {
+        Handler.setEng(!Handler.isEng());
+        if (Handler.isEng()) {
             changeLanguageBtn.setText("en");
             productsBtn.setText("products");
             reportsBtn.setText("reports");
@@ -54,44 +56,19 @@ public class MainWindowController {
             browserBtn.setText("browser");
         }
         else {
-            changeLanguageBtn.setText("ru");
-            productsBtn.setText("товары");
-            reportsBtn.setText("отчеты");
-            settingsBtn.setText("настройки");
-            browserBtn.setText("браузер");}
-        introduceBtn.setOnAction(_ -> Handler.openInfoWindow(mainWindow));
-
+            setRussianGUI();
+            }
     }
 
-    private void openProductsWindow(Stage mainWindow) {
-
-    }
-
-    private void openReportsWindow(Stage mainWindow) {
-
-    }
-
-    private void openSettingsWindow(Stage mainWindow) {
-
-    }
-
-    private void openBrowserWindow(Stage mainWindow) {
-
-    }
-
-
-    private void changeScene (String fxmlFileName) {
-        try {
-            Parent root = FXMLLoader.load(getClass()
-                    .getResource("/" + fxmlFileName + ".fxml"));
-            mainWindow.setScene(new Scene(root));
-            mainWindow.show();
-        } catch (IOException e) {
-            System.err.println("Couldn't load " + fxmlFileName + ".fxml file.\n"
-            + e.getMessage());
-        }
-    }
     private void closeWindow () {
         changeLanguageBtn.getScene().getWindow().hide();
+    }
+
+    private void setRussianGUI() {
+        changeLanguageBtn.setText("ru");
+        productsBtn.setText("товары");
+        reportsBtn.setText("отчеты");
+        settingsBtn.setText("настройки");
+        browserBtn.setText("браузер");
     }
 }

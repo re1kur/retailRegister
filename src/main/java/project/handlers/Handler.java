@@ -3,51 +3,88 @@ package project.handlers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lombok.Getter;
+import lombok.Setter;
+import project.Main;
+import project.entity.Enterprise;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class Handler {
+    @Getter
+    @Setter
+    private static Scene lastScene;
 
-    private static boolean isEng;
+    @Setter
+    @Getter
+    private static Stage mainStage;
 
-    public static void setIsEng(boolean isEng) {
-        Handler.isEng = isEng;
+    @Setter
+    @Getter
+    private static boolean isEng = true;
+
+    @Setter
+    @Getter
+    private static Enterprise currentEnterprise;
+
+    public static void reloadEnterprise() {
+        HibernateUtility.getCurrentSession().getTransaction().begin();
+        HibernateUtility.getCurrentSession().clear();
+        currentEnterprise = HibernateUtility.getCurrentSession()
+                .get(Enterprise.class, currentEnterprise.getId());
+        HibernateUtility.getCurrentSession().getTransaction().commit();
+        HibernateUtility.getCurrentSession().close();
     }
 
-    public static boolean getIsEng() {
-        return isEng;
-    }
-
-    public static void openInfoWindow(Stage stage) {
-        Stage information = new Stage();
+    public static void changeScene(String fxmlFileName) {
         try {
-            if (isEng) {
-                Parent root = FXMLLoader.load(
-                        Objects.requireNonNull(
-                                Handler.class.getResource(
-                                        "/scenes/infoWindowEN.fxml")));
-                information.setScene(new Scene(root));
-            }
-            if (!isEng) {
-                Parent root = FXMLLoader.load(
-                        Objects.requireNonNull(
-                                Handler.class.getResource(
-                                        "/scenes/infoWindowRU.fxml")));
-                information.setScene(new Scene(root));
-            }
+            Parent root = FXMLLoader
+                    .load(Main.class
+                            .getResource("/scenes/" + fxmlFileName + ".fxml"));
+            mainStage.setScene(new Scene(root));
+            mainStage.show();
+        } catch (IOException e) {
+            System.err.println("Couldn't load " + fxmlFileName + ".fxml file.\n"
+                    + e.getMessage());
+        }
+    }
+
+    public static void openIntroduceWindow() {
+        Stage introduceWindow = new Stage();
+        try {
+            Parent root = FXMLLoader.load(
+                    Objects.requireNonNull(
+                            Handler.class.getResource(
+                                    "/scenes/introduceWindow.fxml")));
+            introduceWindow.setScene(new Scene(root));
         } catch (IOException e) {
             System.err.println("Couldn't open information window.\n"
                     + e.getMessage());
-            information.close();
+            introduceWindow.close();
             return;
         }
-        information.initStyle(StageStyle.UNDECORATED);
-        information.initModality(Modality.WINDOW_MODAL);
-        information.initOwner(stage);
-        information.showAndWait();
+        introduceWindow.initStyle(StageStyle.UNDECORATED);
+        introduceWindow.initModality(Modality.WINDOW_MODAL);
+        introduceWindow.initOwner(mainStage);
+        introduceWindow.showAndWait();
+    }
+
+    public static void openErrorAlert(String title, String text) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(text);
+        alert.setTitle(title);
+        alert.showAndWait();
+    }
+
+    public static void openInfoAlert(String title, String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(text);
+        alert.setTitle(title);
+        alert.showAndWait();
     }
 }
