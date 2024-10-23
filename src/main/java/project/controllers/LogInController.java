@@ -5,14 +5,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import project.entity.Enterprise;
 import project.handlers.Handler;
+import project.handlers.HibernateUtility;
 
 public class LogInController {
     private Enterprise enterprise;
 
-    @PersistenceContext
-    private EntityManager em;
+    private boolean isEng;
+
+//    @PersistenceContext
+//    private EntityManager em = Persistence
+//            .createEntityManagerFactory("")
+//            .createEntityManager();
 
     @FXML
     private Button closeWindowBtn;
@@ -34,23 +41,16 @@ public class LogInController {
 
     @FXML
     void initialize() {
-        if (!Handler.isEng()) {
-            setRussianGUI();
-        }
-        closeWindowBtn.setOnAction(_ -> closeWindow());
+        HibernateUtility.getCurrentSession();
+        setLanguageInterface();
+        closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         continueBtn.setOnAction(_ -> continueAction());
         signUpBtn.setOnAction(_ -> Handler.changeScene("signUpWindow"));
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
     }
 
-    private void closeWindow() {
-        continueBtn.getScene().getWindow().hide();
-    }
-
     private void continueAction() {
         if (!checkMailPassword()) {
-            Handler.openErrorAlert("WRONG PASSWORD",
-                    "Please enter a valid password.");
             return;
         }
         Handler.setCurrentEnterprise(enterprise);
@@ -58,52 +58,40 @@ public class LogInController {
     }
 
     private boolean checkMailPassword() {
-        String email = emailTextField.getText();
-        String password = passwordField.getText();
-        em = null;
         try {
-            em = Persistence.createEntityManagerFactory(
-                    "retailRegister").createEntityManager();
-            TypedQuery<Enterprise> query = em.createQuery(
-                    "SELECT e FROM Enterprise e WHERE e.email" +
-                            " = :email", Enterprise.class);
+            String email = emailTextField.getText();
+            String password = passwordField.getText();
+            Session session = HibernateUtility.getCurrentSession();
+            Query query = session.createQuery(
+                    "from Enterprise where email = :email and password = :password");
             query.setParameter("email", email);
-            Enterprise enterprise = query.getSingleResult();
-            if (enterprise.getPassword().equals(password)) {
-                this.enterprise = enterprise;
-                return true;
-            }
+            query.setParameter("password", password);
+            enterprise = (Enterprise) query.getSingleResult();
+        } catch (NoResultException _) {
+            Handler.openErrorAlert(
+                    Handler.isEng() ? "WRONG PASSWORD OR EMAIL": "НЕПРАВИЛЬНЫЕ ПАРОЛЬ ИЛИ ПОЧТА",
+                    Handler.isEng() ? "Please enter valid data." : "Пожалуйста, введите верные данные");
             return false;
-        } catch (NoResultException e) {
-            Handler.openErrorAlert("INVALID EMAIL",
-                    "Could not find the enterprise with the provided email.\n" +
-                            "Please, try again.");
-            return false;
-        } finally {
-            if (em != null) {
-                em.close();
-            }
         }
+//        catch (IllegalStateException _) {
+//            HibernateUtility.closeCurrentSession();
+//            HibernateUtility.getCurrentSession();
+//            continueAction();
+//        }
+        return true;
     }
 
     private void changeLanguage() {
         Handler.setEng(!Handler.isEng());
-        if (Handler.isEng()) {
-            changeLanguageBtn.setText("en");
-            continueBtn.setText("continue");
-            emailTextField.setPromptText("email_of_enterprise");
-            passwordField.setPromptText("password_of_enterprise");
-            signUpBtn.setText("sign up");
-        } else {
-            setRussianGUI();
-        }
+        setLanguageInterface();
     }
 
-    private void setRussianGUI() {
-        changeLanguageBtn.setText("ru");
-        continueBtn.setText("дальше");
-        emailTextField.setPromptText("email_предприятия");
-        passwordField.setPromptText("пароль_предприятия");
-        signUpBtn.setText("зарег-ть");
+    private void setLanguageInterface () {
+        boolean isEng = Handler.isEng();
+        changeLanguageBtn.setText(isEng ? "en": "ru");
+        continueBtn.setText(isEng ? "continue": "дальше");
+        emailTextField.setPromptText(isEng ? "email_of_enterprise": "email_предприятия");
+        passwordField.setPromptText(isEng ? "password_of_enterprise": "пароль_предприятия");
+        signUpBtn.setText(isEng ? "sign up": "зарег-ть");
     }
 }

@@ -10,6 +10,8 @@ import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUpWindowController {
 
@@ -46,7 +48,7 @@ public class SignUpWindowController {
             setRussianGUI();
         }
         backBtn.setOnAction(_ -> Handler.changeScene("logInWindow"));
-        closeWindowBtn.setOnAction(_ -> closeWindow());
+        closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
         signUpBtn.setOnAction(_ -> signUpEnterprise());
     }
@@ -60,10 +62,6 @@ public class SignUpWindowController {
         typeField.setPromptText("Тип предприятия");
         passwordField.setPromptText("Пароль для входа позднее");
         tryPasswordField.setPromptText("Введите пароль снова");
-    }
-
-    private void closeWindow() {
-        signUpBtn.getScene().getWindow().hide();
     }
 
     private void changeLanguage () {
@@ -96,22 +94,24 @@ public class SignUpWindowController {
         session.getTransaction().begin();
         session.persist(enterprise);
         session.getTransaction().commit();
-        Enterprise clone = session.find(
-                Enterprise.class,
-                enterprise.getId());
-        if (clone.equals(enterprise)) {
+        if (checkIsAdded(session, enterprise)) {
             Handler.openInfoAlert(
                     "COMPLETE",
                     "The enterprise is registered.\n" +
                             "Log in");
-            HibernateUtility.getCurrentSession().close();
             Handler.changeScene("logInWindow");
-        } else {
-            Handler.openErrorAlert(
-                    "SOMETHING WRONG",
-                    "Enterprise is not registered.");
-            HibernateUtility.getCurrentSession().close();
+            return;
         }
+        Handler.openErrorAlert(
+                "SOMETHING WRONG",
+                "Enterprise is not registered.");
+    }
+
+    private boolean checkIsAdded(Session session, Enterprise enterprise) {
+        Enterprise clone = session.find(
+                Enterprise.class,
+                enterprise.getId());
+        return clone.equals(enterprise);
     }
 
     private boolean checkFields() {
@@ -133,6 +133,9 @@ public class SignUpWindowController {
                             " The email must be lesser than 256 chars.");
             return false;
         }
+        if (!parseMail(emailField.getText())) {
+            return false;
+        }
         if (typeField.getText().length() > 30) {
             Handler.openErrorAlert("LONG TYPE",
                     "The length of type is long." +
@@ -151,5 +154,26 @@ public class SignUpWindowController {
             return false;
         }
         return true;
+    }
+
+    private boolean parseMail (String mail) {
+        Pattern invalidChars = Pattern.compile("[^a-zA-Z0-9@.]");
+        Matcher matcher = invalidChars.matcher(mail);
+        if (matcher.find()) {
+            Handler.openErrorAlert("INVALID EMAIL",
+                    "Enter the email without invalid characters.");
+            return false;
+        }
+        Pattern correct = Pattern.compile(
+                "^[a-zA-Z0-9.]{1,64}" +
+                        "@[a-zA-Z0-9.]{1,126}\\.[a-zA-Z]{2,63}$");
+        matcher = correct.matcher(mail);
+        if (matcher.matches()) {
+            return true;
+        } else {
+            Handler.openErrorAlert("INVALID EMAIL",
+                    "Enter a valid email address.");
+            return false;
+        }
     }
 }

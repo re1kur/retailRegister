@@ -29,11 +29,7 @@ public class IntroduceWindowController {
         if (!isEng) {
             setRussianGUI();
         }
-        closeWindowBtn.setOnAction(_ -> closeWindow());
-    }
-
-    private void closeWindow() {
-        closeWindowBtn.getScene().getWindow().hide();
+        closeWindowBtn.setOnAction(_ -> firstStringLabel.getScene().getWindow().hide());
     }
 
     private void setRussianGUI() {

@@ -42,16 +42,16 @@ public class Handler {
     }
 
     public static void changeScene(String fxmlFileName) {
+        Parent root = null;
         try {
-            Parent root = FXMLLoader
-                    .load(Main.class
-                            .getResource("/scenes/" + fxmlFileName + ".fxml"));
-            mainStage.setScene(new Scene(root));
-            mainStage.show();
+            root = FXMLLoader
+                    .load(Objects.requireNonNull(Main.class
+                            .getResource("/scenes/" + fxmlFileName + ".fxml")));
         } catch (IOException e) {
-            System.err.println("Couldn't load " + fxmlFileName + ".fxml file.\n"
-                    + e.getMessage());
+            throw new RuntimeException(e);
         }
+        mainStage.setScene(new Scene(root));
+            mainStage.show();
     }
 
     public static void openIntroduceWindow() {
@@ -86,5 +86,9 @@ public class Handler {
         alert.setContentText(text);
         alert.setTitle(title);
         alert.showAndWait();
+    }
+
+    public static void closeMainStage() {
+        mainStage.close();
     }
 }

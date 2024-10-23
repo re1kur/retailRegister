@@ -50,5 +50,30 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label layoutX="218.0" layoutY="52.0" text="name" textFill="GREY">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Label layoutX="218.0" layoutY="92.0" text="email" textFill="GREY">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="132.0" text="type" textFill="GREY">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="172.0" text="pass" textFill="GREY">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="212.0" text="pass" textFill="GREY">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

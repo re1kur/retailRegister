@@ -12,8 +12,6 @@ import project.handlers.Handler;
 import java.io.IOException;
 
 public class MainWindowController {
-    private static Stage mainWindow;
-
     @FXML
     private Button browserBtn;
 
@@ -37,38 +35,26 @@ public class MainWindowController {
 
     @FXML
     void initialize () {
-        if (!Handler.isEng()) {
-            setRussianGUI();
-        }
-        mainWindow = Handler.getMainStage();
-        closeWindowBtn.setOnAction(_ -> closeWindow());
+        setLanguageInterface();
+        closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
         introduceBtn.setOnAction(_ -> Handler.openIntroduceWindow());
+        productsBtn.setOnAction(_ ->
+                Handler.changeScene("productsWindow"));
     }
 
     private void changeLanguage () {
         Handler.setEng(!Handler.isEng());
-        if (Handler.isEng()) {
-            changeLanguageBtn.setText("en");
-            productsBtn.setText("products");
-            reportsBtn.setText("reports");
-            settingsBtn.setText("settings");
-            browserBtn.setText("browser");
-        }
-        else {
-            setRussianGUI();
-            }
+        setLanguageInterface();
+
     }
 
-    private void closeWindow () {
-        changeLanguageBtn.getScene().getWindow().hide();
+    private void setLanguageInterface () {
+        changeLanguageBtn.setText(Handler.isEng() ? "en": "ru");
+        productsBtn.setText(Handler.isEng() ? "products": "товары");
+        reportsBtn.setText(Handler.isEng() ? "reports": "отчеты");
+        settingsBtn.setText(Handler.isEng() ? "settings": "настройки");
+        browserBtn.setText(Handler.isEng() ? "browser": "браузер");
     }
 
-    private void setRussianGUI() {
-        changeLanguageBtn.setText("ru");
-        productsBtn.setText("товары");
-        reportsBtn.setText("отчеты");
-        settingsBtn.setText("настройки");
-        browserBtn.setText("браузер");
-    }
 }
