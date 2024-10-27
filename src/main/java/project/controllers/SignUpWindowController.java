@@ -9,6 +9,7 @@ import project.entity.Enterprise;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,135 +45,102 @@ public class SignUpWindowController {
 
     @FXML
     void initialize() {
-        if (!Handler.isEng()) {
-            setRussianGUI();
-        }
+        setLanguageInterface();
         backBtn.setOnAction(_ -> Handler.changeScene("logInWindow"));
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
         signUpBtn.setOnAction(_ -> signUpEnterprise());
     }
 
-    private void setRussianGUI() {
-        changeLanguageBtn.setText("ru");
-        signUpBtn.setText("зарег-ть");
-        backBtn.setText("обратно");
-        nameField.setPromptText("Название предприятия");
-        emailField.setPromptText("Корпоративный адрес предприятия");
-        typeField.setPromptText("Тип предприятия");
-        passwordField.setPromptText("Пароль для входа позднее");
-        tryPasswordField.setPromptText("Введите пароль снова");
+    private void changeLanguage() {
+        Handler.setEng(!Handler.isEng());
+        setLanguageInterface();
     }
 
-    private void changeLanguage () {
-        Handler.setEng(!Handler.isEng());
-        if (Handler.isEng()) {
-            changeLanguageBtn.setText("en");
-            signUpBtn.setText("sign up");
-            backBtn.setText("back");
-            nameField.setPromptText("Enterprise name");
-            emailField.setPromptText("Enterprise corporate email");
-            typeField.setPromptText("Enterprise type");
-            passwordField.setPromptText("Password to log in later");
-            tryPasswordField.setPromptText("Enter password again");
-
-        } else {
-            setRussianGUI();
-        }
+    private void setLanguageInterface() {
+        boolean isEng = Handler.isEng();
+        changeLanguageBtn.setText(isEng ? "en" : "ru");
+        signUpBtn.setText(isEng ? "Sign up" : "Регистрация");
+        backBtn.setText(isEng ? "Back" : "Обратно");
+        nameField.setPromptText(isEng ? "Enterprise name" : "Название предприятия");
+        emailField.setPromptText(isEng ? "Enterprise corporate email" : "Корп. адрес предприятия");
+        typeField.setPromptText(isEng ? "Enterprise type" : "Тип предприятия");
+        passwordField.setPromptText(isEng ? "Password" : "Пароль");
+        tryPasswordField.setPromptText(isEng ? "Password again" : "Ещё раз пароль");
     }
 
     private void signUpEnterprise() {
+        boolean isEng = Handler.isEng();
         if (!checkFields()) return;
         System.out.println("It is correct.");
-        Enterprise enterprise = Enterprise.builder()
-                .name(nameField.getText())
-                .type(typeField.getText())
-                .email(emailField.getText())
-                .password(passwordField.getText())
-                .build();
+        Enterprise enterprise = Enterprise.builder().name(nameField.getText()).type(typeField.getText()).email(emailField.getText()).password(passwordField.getText()).build();
         Session session = HibernateUtility.getCurrentSession();
         session.getTransaction().begin();
         session.persist(enterprise);
         session.getTransaction().commit();
         if (checkIsAdded(session, enterprise)) {
-            Handler.openInfoAlert(
-                    "COMPLETE",
-                    "The enterprise is registered.\n" +
-                            "Log in");
+            Handler.openInfoAlert(isEng ? "SUCCESSFULLY" : "УСПЕШНО", isEng ? "The enterprise is registered.\n" + "Log in" : "Предприятие зарегистрировано.\n" + "Авторизуйтесь.");
             Handler.changeScene("logInWindow");
             return;
         }
-        Handler.openErrorAlert(
-                "SOMETHING WRONG",
-                "Enterprise is not registered.");
+        Handler.openErrorAlert(isEng ? "SOMETHING WRONG" : "ЧТО-ТО НЕ ТАК", isEng ? "Enterprise is not registered." : "Предприятие не зарегистрировалось.");
     }
 
     private boolean checkIsAdded(Session session, Enterprise enterprise) {
-        Enterprise clone = session.find(
-                Enterprise.class,
-                enterprise.getId());
+        Enterprise clone = session.find(Enterprise.class, enterprise.getId());
         return clone.equals(enterprise);
     }
 
     private boolean checkFields() {
-        if (nameField.getText().length() > 30) {
-            Handler.openErrorAlert("LONG NAME",
-                    "The length of name is long." +
-                            " The name must be lesser than 30 chars.");
-            return false;
-        }
-        if (nameField.getText().isEmpty() | emailField.getText().isEmpty() |
-                typeField.getText().isEmpty() | passwordField.getText().isEmpty()) {
-            Handler.openErrorAlert("THE TEXT FIELD(S) IS EMPTY.",
-                    "Fill in the text field(s) and try again.");
-            return false;
-        }
-        if (emailField.getText().length() > 256) {
-            Handler.openErrorAlert("LONG EMAIL",
-                    "The length of email is long." +
-                            " The email must be lesser than 256 chars.");
-            return false;
-        }
-        if (!parseMail(emailField.getText())) {
-            return false;
-        }
-        if (typeField.getText().length() > 30) {
-            Handler.openErrorAlert("LONG TYPE",
-                    "The length of type is long." +
-                            " The type must be lesser than 30 chars.");
-            return false;
-        }
-        if (passwordField.getText().length() > 64) {
-            Handler.openErrorAlert("LONG PASSWORD",
-                    "The length of password is long." +
-                            " The password must be lesser than 64 chars.");
-            return false;
-        }
-        if (!Objects.equals(passwordField.getText(), tryPasswordField.getText())) {
-            Handler.openInfoAlert("PASSWORDS DO NOT MATCH",
-                    "Passwords do not match. Try again.");
+        boolean isEng = Handler.isEng();
+        try {
+            if (nameField.getText().length() > 30) {
+                throw new IOException(isEng ? "Incorrect name.\nThe name must be lesser than 30 chars." : "Неправильное название.\nНазвание должно быть меньше 30 символов");
+            }
+            if (nameField.getText().isEmpty() | emailField.getText().isEmpty() | typeField.getText().isEmpty() | passwordField.getText().isEmpty()) {
+                throw new IOException(isEng ? "The field(s) is empty.\nEnter values in the empty field(s) and try again." : "Поле(поля) пустое.\nВведите данные в пустые поля и попробуйте еще раз.");
+            }
+            if (emailField.getText().length() > 256) {
+                throw new IOException(
+                        isEng ? "Incorrect email.\nThe email must be lesser than 256 chars." :
+                                "Неправильная почта.\nПочта должна быть меньше 256 символов.");
+            }
+            if (!parseMail(emailField.getText())) {
+                return false;
+            }
+            if (typeField.getText().length() > 30) {
+                throw new IOException(isEng ? "Incorrect type\nType must be lesser than 30 chars."
+                        : "Неправильный тип.\nТип должен быть меньше 30 символов.");
+            }
+            if (passwordField.getText().length() > 64) {
+                throw new IOException(isEng ? "Incorrect password\nPassword must be lesser than 64 chars." :
+                        "Неправильный пароль.\nПароль должен быть меньше 64 символов");
+            }
+            if (!Objects.equals(passwordField.getText(), tryPasswordField.getText())) {
+                throw new IOException(isEng ? "Passwords is don't match.\nTry again." :
+                        "Пароли не сходятся\nПопробуйте ещё раз.");
+            }
+        } catch (IOException e) {
+            Handler.openErrorAlert(isEng ? "INVALID ENTERING" : "НЕПРАВИЛЬНЫЙ ВВОД",
+                    e.getMessage());
             return false;
         }
         return true;
     }
 
-    private boolean parseMail (String mail) {
+    private boolean parseMail(String mail) {
         Pattern invalidChars = Pattern.compile("[^a-zA-Z0-9@.]");
         Matcher matcher = invalidChars.matcher(mail);
         if (matcher.find()) {
-            Handler.openErrorAlert("INVALID EMAIL",
-                    "Enter the email without invalid characters.");
+            Handler.openErrorAlert("INVALID EMAIL", "Enter the email without invalid characters.");
             return false;
         }
-        Pattern correct = Pattern.compile(
-                "^[a-zA-Z0-9.]{1,64}" +
-                        "@[a-zA-Z0-9.]{1,126}\\.[a-zA-Z]{2,63}$");
+        Pattern correct = Pattern.compile("^[a-zA-Z0-9.]{1,64}" + "@[a-zA-Z0-9.]{1,126}\\.[a-zA-Z]{2,63}$");
         matcher = correct.matcher(mail);
         if (matcher.matches()) {
             return true;
         } else {
-            Handler.openErrorAlert("INVALID EMAIL",
-                    "Enter a valid email address.");
+            Handler.openErrorAlert("INVALID EMAIL", "Enter a valid email address.");
             return false;
         }
     }

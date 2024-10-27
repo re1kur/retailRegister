@@ -9,15 +9,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="211.0" prefWidth="270.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.MainWindowController">
    <children>
-      <Button fx:id="productsBtn" layoutX="35.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" text="products" textFill="WHITE">
+      <Button fx:id="productsBtn" layoutX="35.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="13.5" />
+            <Font name="Segoe UI" size="12.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="changeLanguageBtn" layoutX="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
+      <Button fx:id="changeLanguageBtn" layoutX="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="17.0" />
          </font>
@@ -41,25 +41,25 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="reportsBtn" layoutX="155.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" text="reports" textFill="WHITE">
+      <Button fx:id="reportsBtn" layoutX="155.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="13.5" />
+            <Font name="Segoe UI" size="12.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="settingsBtn" layoutX="35.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" text="settings" textFill="WHITE">
+      <Button fx:id="settingsBtn" layoutX="35.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="12.5" />
+            <Font name="Segoe UI" size="12.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="browserBtn" layoutX="155.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" text="browser" textFill="WHITE">
+      <Button fx:id="browserBtn" layoutX="155.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="13.5" />
+            <Font name="Segoe UI" size="12.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

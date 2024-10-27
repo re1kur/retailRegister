@@ -69,15 +69,10 @@ public class LogInController {
             enterprise = (Enterprise) query.getSingleResult();
         } catch (NoResultException _) {
             Handler.openErrorAlert(
-                    Handler.isEng() ? "WRONG PASSWORD OR EMAIL": "НЕПРАВИЛЬНЫЕ ПАРОЛЬ ИЛИ ПОЧТА",
+                    Handler.isEng() ? "WRONG PASSWORD OR EMAIL": "НЕПРАВИЛЬНЫЙ ПАРОЛЬ ИЛИ ПОЧТА",
                     Handler.isEng() ? "Please enter valid data." : "Пожалуйста, введите верные данные");
             return false;
         }
-//        catch (IllegalStateException _) {
-//            HibernateUtility.closeCurrentSession();
-//            HibernateUtility.getCurrentSession();
-//            continueAction();
-//        }
         return true;
     }
 
@@ -89,9 +84,9 @@ public class LogInController {
     private void setLanguageInterface () {
         boolean isEng = Handler.isEng();
         changeLanguageBtn.setText(isEng ? "en": "ru");
-        continueBtn.setText(isEng ? "continue": "дальше");
+        continueBtn.setText(isEng ? "Log in": "Войти");
         emailTextField.setPromptText(isEng ? "email_of_enterprise": "email_предприятия");
         passwordField.setPromptText(isEng ? "password_of_enterprise": "пароль_предприятия");
-        signUpBtn.setText(isEng ? "sign up": "зарег-ть");
+        signUpBtn.setText(isEng ? "Sign up": "Регистрация");
     }
 }

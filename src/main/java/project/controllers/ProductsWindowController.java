@@ -65,6 +65,7 @@ public class ProductsWindowController {
         backBtn.setOnAction(_ -> Handler.changeScene("mainWindow"));
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         addBtn.setOnAction(_ -> Handler.changeScene("addProductWindow"));
+        deleteBtn.setOnAction(_ -> Handler.changeScene("deleteProductWindow"));
 
     }
 
@@ -75,16 +76,16 @@ public class ProductsWindowController {
 
     private void setLanguageInterface() {
         boolean isEng = Handler.isEng();
-        addBtn.setText(isEng ? "add" : "добавить");
-        deleteBtn.setText(isEng ? "delete" : "удалить");
-        statisticsBtn.setText(isEng ? "statistics" : "статистика");
-        findBtn.setText(isEng ? "find" : "найти");
+        addBtn.setText(isEng ? "Add" : "Добавить");
+        deleteBtn.setText(isEng ? "Delete" : "Удалить");
+        statisticsBtn.setText(isEng ? "Statistics" : "Статистика");
+        findBtn.setText(isEng ? "Search" : "Поиск");
         changeLanguageBtn.setText(isEng ? "en" : "ru");
-        backBtn.setText(isEng ? "back" : "обратно");
+        backBtn.setText(isEng ? "Menu" : "Меню");
         idLabel.setText(isEng ? "Id" : "Номер");
         nameLabel.setText(isEng ? "Name" : "Название");
         numberLabel.setText(isEng ? "Number" : "Количество");
-        categoryLabel.setText(isEng  ? "Category" : "Категория");
+        categoryLabel.setText(isEng ? "Category" : "Категория");
     }
 
     private void fillTheVBox() {

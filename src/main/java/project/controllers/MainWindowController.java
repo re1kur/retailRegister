@@ -51,10 +51,10 @@ public class MainWindowController {
 
     private void setLanguageInterface () {
         changeLanguageBtn.setText(Handler.isEng() ? "en": "ru");
-        productsBtn.setText(Handler.isEng() ? "products": "товары");
-        reportsBtn.setText(Handler.isEng() ? "reports": "отчеты");
-        settingsBtn.setText(Handler.isEng() ? "settings": "настройки");
-        browserBtn.setText(Handler.isEng() ? "browser": "браузер");
+        productsBtn.setText(Handler.isEng() ? "Products": "Товары");
+        reportsBtn.setText(Handler.isEng() ? "Reports": "Отчеты");
+        settingsBtn.setText(Handler.isEng() ? "Settings": "Настройки");
+        browserBtn.setText(Handler.isEng() ? "Browser": "Браузер");
     }
 
 }

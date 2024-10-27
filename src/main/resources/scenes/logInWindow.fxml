@@ -18,9 +18,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="continueBtn" layoutX="182.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 50;" text="continue" textFill="WHITE">
+      <Button fx:id="continueBtn" layoutX="182.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 50;" textFill="WHITE">
          <font>
-            <Font name="Calibri" size="12.0" />
+            <Font name="Calibri" size="10.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -28,15 +28,15 @@
       </Button>
       <TextField fx:id="emailTextField" layoutX="25.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="email_of_enterprise" text="wilderness.rstrnt@gmail.com" />
       <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="92.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="password_of_enterprise" text="wild" />
-      <Button fx:id="signUpBtn" layoutX="25.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="sign up" textFill="WHITE">
+      <Button fx:id="signUpBtn" layoutX="25.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: white;" textFill="WHITE">
          <font>
-            <Font name="Calibri" size="12.0" />
+            <Font name="Calibri" size="10.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="changeLanguageBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
+      <Button fx:id="changeLanguageBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="17.0" />
          </font>
