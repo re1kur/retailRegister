@@ -7,11 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import project.entity.Product;
+import project.entity.Goods;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
-public class DeleteWindowController {
+public class DeleteGoodsWindowController {
     String selectedString;
 
     @FXML
@@ -42,7 +42,7 @@ public class DeleteWindowController {
         setLanguageInterface();
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
-        backBtn.setOnAction(_ -> Handler.changeScene("productsWindow"));
+        backBtn.setOnAction(_ -> Handler.changeScene("goodsWindow"));
         deleteBtn.setOnAction(_ -> deleteSelected());
 
     }
@@ -60,7 +60,7 @@ public class DeleteWindowController {
         if (selectedString.equals("Product")) {
             int id = Integer.parseInt(field.getText());
             session.beginTransaction();
-            Query<Product> query = session.createQuery("delete from Product where id = :id and enterprise = :enterprise");
+            Query<Goods> query = session.createQuery("delete from Goods where id = :id and enterprise = :enterprise");
             query.setParameter("id", id);
             query.setParameter("enterprise", Handler.getCurrentEnterprise());
             query.executeUpdate();
@@ -69,7 +69,7 @@ public class DeleteWindowController {
         if (selectedString.equals("Category")) {
             String name = field.getText();
             session.beginTransaction();
-            Query<Product> query = session.createQuery("delete from Product where category = :category and enterprise = :enterprise");
+            Query<Goods> query = session.createQuery("delete from Goods where category = :category and enterprise = :enterprise");
             query.setParameter("enterprise", Handler.getCurrentEnterprise());
             query.setParameter("category", name);
             query.executeUpdate();

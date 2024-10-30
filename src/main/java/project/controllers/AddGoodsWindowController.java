@@ -4,13 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.hibernate.Session;
-import project.entity.Product;
+import project.entity.Goods;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
 import java.io.IOException;
 
-public class AddProductWindowController {
+public class AddGoodsWindowController {
 
     @FXML
     private Button addBtn;
@@ -39,7 +39,7 @@ public class AddProductWindowController {
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
         addBtn.setOnAction(_ -> addProduct());
-        backBtn.setOnAction(_ -> Handler.changeScene("productsWindow"));
+        backBtn.setOnAction(_ -> Handler.changeScene("goodsWindow"));
     }
 
     private boolean checkFields(boolean isEng) {
@@ -79,7 +79,7 @@ public class AddProductWindowController {
         String category = categoryField.getText();
         String name = nameField.getText();
         Integer number = Integer.parseInt(numberField.getText());
-        Product product = Product.builder()
+        Goods goods = Goods.builder()
                 .name(name)
                 .category(category)
                 .number(number)
@@ -87,18 +87,18 @@ public class AddProductWindowController {
                 .build();
         Session session = HibernateUtility.getCurrentSession();
         session.beginTransaction();
-        session.persist(product);
+        session.persist(goods);
         session.getTransaction().commit();
-        boolean isAdded = checkIsAdded(session, product);
+        boolean isAdded = checkIsAdded(session, goods);
         if (isEng) Handler.openInfoAlert(isAdded ? "SUCCESSFULLY" : "SOMETHING WENT WRONG",
                 isAdded ? "Product has been added successfully." : "Product has not been added.");
         if (!isEng) Handler.openInfoAlert(isAdded ? "УСПЕШНО" : "ЧТО-ТО ПОШЛО НЕ ТАК",
                 isAdded ? "Продукт успешно добавлен." : "Продукт не был добавлен.");
     }
 
-    private boolean checkIsAdded(Session session, Product product) {
-        Product clone = session.find(Product.class, product.getId());
-        return clone.equals(product);
+    private boolean checkIsAdded(Session session, Goods goods) {
+        Goods clone = session.find(Goods.class, goods.getId());
+        return clone.equals(goods);
     }
 
     private void changeLanguage() {

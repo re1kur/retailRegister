@@ -3,9 +3,9 @@ package project.controllers;
 import jakarta.persistence.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import project.entity.Enterprise;
 import project.handlers.Handler;
@@ -14,12 +14,8 @@ import project.handlers.HibernateUtility;
 public class LogInController {
     private Enterprise enterprise;
 
-    private boolean isEng;
-
-//    @PersistenceContext
-//    private EntityManager em = Persistence
-//            .createEntityManagerFactory("")
-//            .createEntityManager();
+    @FXML
+    private Label welcomeLabel;
 
     @FXML
     private Button closeWindowBtn;
@@ -88,5 +84,6 @@ public class LogInController {
         emailTextField.setPromptText(isEng ? "email_of_enterprise": "email_предприятия");
         passwordField.setPromptText(isEng ? "password_of_enterprise": "пароль_предприятия");
         signUpBtn.setText(isEng ? "Sign up": "Регистрация");
+        welcomeLabel.setText(isEng ? "WELCOME" : "ДОБРО ПОЖАЛОВАТЬ");
     }
 }

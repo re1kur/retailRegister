@@ -37,6 +37,6 @@ public class Enterprise implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "enterprise")
-    private Collection<Product> products;
+    private Collection<Goods> goods;
 
 }

@@ -7,11 +7,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="211.0" prefWidth="270.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.MainWindowController">
    <children>
-      <Button fx:id="productsBtn" layoutX="35.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
+      <Button fx:id="goodsBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="12.0" />
+            <Font name="Calibri Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -19,7 +19,7 @@
       </Button>
       <Button fx:id="changeLanguageBtn" layoutX="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="17.0" />
+            <Font name="Calibri Bold" size="17.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -27,13 +27,13 @@
       </Button>
       <Button fx:id="introduceBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent; -fx-border-radius: 50;" text="?" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="17.0" />
+            <Font name="Calibri Bold" size="17.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="closeWindowBtn" layoutX="228.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
+      <Button fx:id="closeWindowBtn" layoutX="458.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
          <font>
             <Font name="Cambria Bold Italic" size="18.0" />
          </font>
@@ -41,31 +41,47 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="reportsBtn" layoutX="155.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
+      <Button fx:id="categoriesBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="12.0" />
+            <Font name="Calibri Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="settingsBtn" layoutX="35.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
+      <Button fx:id="settingsBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="12.0" />
+            <Font name="Calibri Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="browserBtn" layoutX="155.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
+      <Button fx:id="supportBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="12.0" />
+            <Font name="Calibri Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Line endX="270.0" layoutY="30.0" stroke="WHITE" />
+      <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
       <Label layoutX="149.0" layoutY="7.0" />
+      <Button fx:id="unitsMeasurementBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="reportingBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 1;" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

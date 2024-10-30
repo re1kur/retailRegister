@@ -7,16 +7,16 @@ import lombok.Getter;
 
 import java.io.IOException;
 
-public class ProductPane extends VBox {
+public class GoodsPane extends VBox {
     @Getter
-    private static Product product;
+    private static Goods goods;
 
 
-    public ProductPane(Product product) {
-        this.product = product;
+    public GoodsPane(Goods goods) {
+        this.goods = goods;
         FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(
-                    "/scenes/productPane.fxml"));
+                    "/scenes/goodsPane.fxml"));
         Parent root = null;
         try {
             root = loader.load();

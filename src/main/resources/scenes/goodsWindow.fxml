@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.GoodsWindowController">
+    <children>
+      <HBox layoutX="50.0" layoutY="314.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="264.0">
+         <children>
+              <Button fx:id="addBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.5" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+                  <font>
+                      <Font name="Calibri" size="11.5" />
+                  </font>
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+              </Button>
+            <Button fx:id="deleteBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.5" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="11.5" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="editBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.5" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="11.5" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+        <Button fx:id="changeLanguageBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
+            <font>
+                <Font name="Segoe UI" size="17.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="closeWindowBtn" layoutX="458.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
+            <font>
+                <Font name="Cambria Bold Italic" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
+        <Label layoutX="149.0" layoutY="7.0" />
+      <Button fx:id="backBtn" layoutX="384.0" layoutY="314.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 8;" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri" size="11.5" />
+         </font>
+      </Button>
+      <ScrollPane layoutX="50.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="400.0" style="-fx-border-color: black;">
+        <content>
+          <AnchorPane fx:id="anchorPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="215.0" prefWidth="395.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox fx:id="containerOfGoodsPanes" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="395.0" />
+                  <HBox layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="385.0">
+                     <children>
+                        <Label fx:id="idLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.5" />
+                           </font></Label>
+                        <Label fx:id="nameLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="81.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.5" />
+                           </font></Label>
+                        <Label fx:id="numberLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.5" />
+                           </font></Label>
+                        <Label fx:id="categoryLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.5" />
+                           </font></Label>
+                        <Label fx:id="priceLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.5" />
+                           </font></Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <HBox layoutX="50.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="190.4" style="-fx-background-color: transparent;">
+         <children>
+            <TextField fx:id="substringField" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-width: 1;">
+               <font>
+                  <Font name="Calibri" size="12.5" />
+               </font></TextField>
+            <Button fx:id="searchBtn" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="9.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <CheckBox fx:id="idCheckBox" layoutX="250.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" scaleX="0.8" scaleY="0.8" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="nameCheckBox" layoutX="250.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" scaleX="0.8" scaleY="0.8" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="priceCheckBox" layoutX="390.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" scaleX="0.8" scaleY="0.8" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="numberCheckBox" layoutX="320.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" scaleX="0.8" scaleY="0.8" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="categoryCheckBox" layoutX="320.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" scaleX="0.8" scaleY="0.8" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font></CheckBox>
+      <Button fx:id="dropBtn" alignment="CENTER" layoutX="397.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="9.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+    </children>
+</AnchorPane>

@@ -9,10 +9,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import project.Main;
 import project.entity.Enterprise;
+import project.entity.Goods;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class Handler {
@@ -90,5 +94,14 @@ public class Handler {
 
     public static void closeMainStage() {
         mainStage.close();
+    }
+
+    public static List<Goods> getGoods() {
+        Session session = HibernateUtility.getCurrentSession();
+        Query<Goods> query = session.createQuery(
+                "from Goods where enterprise = :enterprise",
+                Goods.class);
+        query.setParameter("enterprise", getCurrentEnterprise());
+        return query.getResultList();
     }
 }
