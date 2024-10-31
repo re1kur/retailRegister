@@ -39,4 +39,8 @@ public class Enterprise implements Serializable {
     @OneToMany(mappedBy = "enterprise")
     private Collection<Goods> goods;
 
+    @ToString.Exclude
+    @OneToMany(mappedBy = "enterprise")
+    private Collection<Category> categories;
+
 }

@@ -12,6 +12,7 @@ import lombok.Setter;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import project.Main;
+import project.entity.Category;
 import project.entity.Enterprise;
 import project.entity.Goods;
 
@@ -45,6 +46,23 @@ public class Handler {
         HibernateUtility.getCurrentSession().close();
     }
 
+    public static void openModalWindow(String fxmlFileName) {
+        Parent root = null;
+        Stage stage = new Stage();
+        try {
+            root = FXMLLoader
+                    .load(Objects.requireNonNull(Main.class
+                            .getResource("/scenes/" + fxmlFileName + ".fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(mainStage);
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();
+    }
+
     public static void changeScene(String fxmlFileName) {
         Parent root = null;
         try {
@@ -55,7 +73,7 @@ public class Handler {
             throw new RuntimeException(e);
         }
         mainStage.setScene(new Scene(root));
-            mainStage.show();
+        mainStage.show();
     }
 
     public static void openIntroduceWindow() {
@@ -101,6 +119,14 @@ public class Handler {
         Query<Goods> query = session.createQuery(
                 "from Goods where enterprise = :enterprise",
                 Goods.class);
+        query.setParameter("enterprise", getCurrentEnterprise());
+        return query.getResultList();
+    }
+
+    public static List<Category> getCategories() {
+        Session session = HibernateUtility.getCurrentSession();
+        Query<Category> query = session.createQuery("from Category where enterprise = :enterprise",
+                Category.class);
         query.setParameter("enterprise", getCurrentEnterprise());
         return query.getResultList();
     }

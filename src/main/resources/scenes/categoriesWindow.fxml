@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.GoodsWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.CategoriesWindowController">
     <children>
       <HBox layoutX="50.0" layoutY="314.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="264.0">
          <children>
@@ -72,26 +72,18 @@
         <content>
           <AnchorPane fx:id="anchorPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="215.0" prefWidth="395.0" style="-fx-background-color: white;">
                <children>
-                  <VBox fx:id="containerOfGoodsPanes" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="395.0" />
+                  <VBox fx:id="containerOfCategoryPanes" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="395.0" />
                   <HBox layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="385.0">
                      <children>
                         <Label fx:id="idLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
                            <font>
                               <Font name="Calibri" size="13.5" />
                            </font></Label>
-                        <Label fx:id="nameLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="81.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
+                        <Label fx:id="nameLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="155.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
                            <font>
                               <Font name="Calibri" size="13.5" />
                            </font></Label>
-                        <Label fx:id="numberLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
-                           <font>
-                              <Font name="Calibri" size="13.5" />
-                           </font></Label>
-                        <Label fx:id="categoryLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
-                           <font>
-                              <Font name="Calibri" size="13.5" />
-                           </font></Label>
-                        <Label fx:id="priceLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
+                        <Label fx:id="numberLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="155.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
                            <font>
                               <Font name="Calibri" size="13.5" />
                            </font></Label>

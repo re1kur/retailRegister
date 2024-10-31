@@ -13,8 +13,8 @@
    <children>
       <AnchorPane layoutX="125.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="250.0" style="-fx-border-color: white; -fx-border-radius: 12;">
          <children>
-            <TextField fx:id="emailTextField" focusTraversable="false" layoutX="15.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="25.0" prefWidth="220.0" promptText="email_of_enterprise" text="wilderness.rstrnt@gmail.com" />
-            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="15.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="25.0" prefWidth="220.0" promptText="password_of_enterprise" text="wild" />
+            <TextField fx:id="emailTextField" focusTraversable="false" layoutX="15.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="email_of_enterprise" text="wilderness.rstrnt@gmail.com" />
+            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="15.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="password_of_enterprise" text="wild" />
             <Button fx:id="continueBtn" layoutX="172.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 50;" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="10.0" />
@@ -50,7 +50,7 @@
          </cursor>
       </Button>
       <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
-      <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="201.0" layoutY="41.0" text="WELCOME" textFill="WHITE">
+      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="201.0" layoutY="41.0" text="WELCOME" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

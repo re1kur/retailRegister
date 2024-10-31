@@ -22,7 +22,11 @@ public class Goods {
 
     private Integer number;
 
-    private String category;
+    private Integer price;
+
+    @JoinColumn(name = "category")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     @JoinColumn(name = "entp_id")
     @ManyToOne(fetch = FetchType.LAZY)

@@ -48,6 +48,7 @@ public class MainWindowController {
         introduceBtn.setOnAction(_ -> Handler.openIntroduceWindow());
         goodsBtn.setOnAction(_ ->
                 Handler.changeScene("goodsWindow"));
+        categoriesBtn.setOnAction(_ ->Handler.changeScene("categoriesWindow"));
     }
 
     private void changeLanguage () {

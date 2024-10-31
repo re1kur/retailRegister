@@ -2,23 +2,87 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="270.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.AddGoodsWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.AddGoodsWindowController">
     <children>
+      <AnchorPane layoutX="50.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 20;">
+         <children>
+            <ChoiceBox fx:id="categoriesChoiceBox" focusTraversable="false" layoutX="225.0" layoutY="84.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 7;" />
+            <TextField fx:id="nameField" focusTraversable="false" layoutX="14.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" promptText="Name of goods" style="-fx-background-radius: 7;">
+               <font>
+                  <Font name="Calibri" size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="317.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="66.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="добавить" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="backBtn" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="back" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="nameLabel" alignment="CENTER" layoutX="14.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Enter the name of goods:" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="numberField" focusTraversable="false" layoutX="14.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" promptText="Number of goods" style="-fx-background-radius: 7;">
+               <font>
+                  <Font name="Calibri" size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="numberLabel" alignment="CENTER" layoutX="14.0" layoutY="93.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Enter the number of goods:" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="priceField" focusTraversable="false" layoutX="14.0" layoutY="176.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" promptText="Price of goods" style="-fx-background-radius: 7;">
+               <font>
+                  <Font name="Calibri" size="13.0" />
+               </font>
+            </TextField>
+            <Label fx:id="priceLabel" alignment="CENTER" layoutX="14.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Enter the price of one goods:" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Line endX="200.0" endY="235.0" startX="200.0" stroke="WHITE" />
+            <Label fx:id="categoryLabel" alignment="CENTER" layoutX="210.0" layoutY="63.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Select the category ↓" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="measureUnitsChoiceBox" focusTraversable="false" layoutX="221.0" layoutY="146.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 7;" />
+            <Label fx:id="measUnitLabel" alignment="CENTER" layoutX="210.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Select the measure unit ↓" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
         <Button fx:id="changeLanguageBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
             <font>
-                <Font name="Segoe UI" size="17.0" />
+                <Font name="Calibri" size="16.0" />
             </font>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="closeWindowBtn" layoutX="228.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
+        <Button fx:id="closeWindowBtn" layoutX="457.6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
             <font>
                 <Font name="Cambria Bold Italic" size="18.0" />
             </font>
@@ -26,41 +90,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Line endX="270.0" layoutY="30.0" stroke="WHITE" />
+        <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
         <Label layoutX="149.0" layoutY="7.0" />
-      <TextField fx:id="nameField" layoutX="25.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Product name" />
-      <TextField fx:id="categoryField" layoutX="25.0" layoutY="77.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Product category" />
-      <Button fx:id="addBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="178.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="66.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="add" textFill="WHITE">
-         <font>
-            <Font size="10.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="backBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="25.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="back" textFill="WHITE">
-         <font>
-            <Font size="10.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label layoutX="218.0" layoutY="47.0" text="name" textFill="GREY">
-         <font>
-            <Font size="8.0" />
-         </font>
-      </Label>
-      <Label layoutX="212.0" layoutY="84.0" text="category" textFill="GREY">
-         <font>
-            <Font size="8.0" />
-         </font>
-      </Label>
-      <TextField fx:id="numberField" layoutX="25.0" layoutY="111.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" promptText="Number of products" />
-      <Label layoutX="214.0" layoutY="118.0" text="number" textFill="GREY">
-         <font>
-            <Font size="8.0" />
-         </font>
-      </Label>
     </children>
 </AnchorPane>

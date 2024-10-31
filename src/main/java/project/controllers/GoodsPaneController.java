@@ -8,10 +8,8 @@ public class GoodsPaneController {
     @FXML
     private Label categoryValueLabel;
 
-
     @FXML
     private Label idValueLabel;
-
 
     @FXML
     private Label nameValueLabel;
@@ -26,8 +24,8 @@ public class GoodsPaneController {
     void initialize() {
         idValueLabel.setText(String.valueOf(GoodsPane.getGoods().getId()));
         nameValueLabel.setText(GoodsPane.getGoods().getName());
-        categoryValueLabel.setText(GoodsPane.getGoods().getCategory());
+        categoryValueLabel.setText(GoodsPane.getGoods().getCategory().getName());
         numberValueLabel.setText(GoodsPane.getGoods().getNumber().toString());
-
+        priceValueLabel.setText(GoodsPane.getGoods().getPrice().toString());
     }
 }

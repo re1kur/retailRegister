@@ -2,8 +2,11 @@ package project.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.hibernate.Session;
+import project.entity.Category;
 import project.entity.Goods;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
@@ -19,7 +22,10 @@ public class AddGoodsWindowController {
     private Button backBtn;
 
     @FXML
-    private TextField categoryField;
+    private ChoiceBox<Category> categoriesChoiceBox;
+
+    @FXML
+    private Label categoryLabel;
 
     @FXML
     private Button changeLanguageBtn;
@@ -28,35 +34,55 @@ public class AddGoodsWindowController {
     private Button closeWindowBtn;
 
     @FXML
+    private Label measUnitLabel;
+
+    @FXML
+    private ChoiceBox<?> measureUnitsChoiceBox;
+
+    @FXML
     private TextField nameField;
+
+    @FXML
+    private Label nameLabel;
 
     @FXML
     private TextField numberField;
 
     @FXML
+    private Label numberLabel;
+
+    @FXML
+    private TextField priceField;
+
+    @FXML
+    private Label priceLabel;
+
+    @FXML
     void initialize() {
         setLanguageInterface();
+        categoriesChoiceBox.getItems().addAll(Handler.getCategories());
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
-        addBtn.setOnAction(_ -> addProduct());
+        addBtn.setOnAction(_ -> addGoods());
         backBtn.setOnAction(_ -> Handler.changeScene("goodsWindow"));
     }
 
     private boolean checkFields(boolean isEng) {
         try {
             String name = nameField.getText();
-            String category = categoryField.getText();
+            Category category = categoriesChoiceBox.getSelectionModel().getSelectedItem();
             if (name.isEmpty()) throw new IOException(isEng ? "Name field is empty." :
                     "Поле названия пустое.");
-            if (category.isEmpty()) throw new IOException(isEng ? "Category field is empty." :
-                    "Поле категории пустое.");
+            if (category == null) throw new IOException(isEng ? "Category has not been selected." :
+                    "Категория не была выбрана.");
             if (name.length() > 40) throw new IOException(isEng ? "Name field is too long" :
                     "Поле имени слишком длинное.");
-            if (category.length() > 40) throw new IOException(isEng ? "Category field is too long" :
-                    "Поле категории слишком длинное.");
-            Integer number = Integer.parseInt(numberField.getText());
+            int number = Integer.parseInt(numberField.getText());
+            int price = Integer.parseInt(priceField.getText());
             if (number < 0) throw new IOException(isEng ? "Number field is negative." :
                     "Поле количества отрицательное.");
+            if (price < 0) throw new IOException(isEng ? "Price field is negative." :
+                    "Поле цены отрицательное.");
         } catch (NumberFormatException _) {
             Handler.openErrorAlert(isEng ? "INVALID NUMBER" : "НЕВЕРНОЕ КОЛИЧЕСТВО",
                     isEng ? "Please, enter a valid number.\n" +
@@ -73,16 +99,18 @@ public class AddGoodsWindowController {
         return true;
     }
 
-    private void addProduct() {
+    private void addGoods() {
         boolean isEng = Handler.isEng();
         if (!checkFields(isEng)) return;
-        String category = categoryField.getText();
+        Category category = categoriesChoiceBox.getSelectionModel().getSelectedItem();
         String name = nameField.getText();
         Integer number = Integer.parseInt(numberField.getText());
+        Integer price = Integer.parseInt(priceField.getText());
         Goods goods = Goods.builder()
                 .name(name)
                 .category(category)
                 .number(number)
+                .price(price)
                 .enterprise(Handler.getCurrentEnterprise())
                 .build();
         Session session = HibernateUtility.getCurrentSession();
@@ -91,9 +119,9 @@ public class AddGoodsWindowController {
         session.getTransaction().commit();
         boolean isAdded = checkIsAdded(session, goods);
         if (isEng) Handler.openInfoAlert(isAdded ? "SUCCESSFULLY" : "SOMETHING WENT WRONG",
-                isAdded ? "Product has been added successfully." : "Product has not been added.");
+                isAdded ? "Goods has been added successfully." : "Goods has not been added.");
         if (!isEng) Handler.openInfoAlert(isAdded ? "УСПЕШНО" : "ЧТО-ТО ПОШЛО НЕ ТАК",
-                isAdded ? "Продукт успешно добавлен." : "Продукт не был добавлен.");
+                isAdded ? "Товар успешно добавлен." : "Товар не был добавлен.");
     }
 
     private boolean checkIsAdded(Session session, Goods goods) {
@@ -112,8 +140,14 @@ public class AddGoodsWindowController {
         addBtn.setText(isEng ? "Add" : "Добавить");
         changeLanguageBtn.setText(isEng ? "en" : "ru");
         nameField.setPromptText(isEng ? "Product name" : "Название товара");
-        categoryField.setPromptText(isEng ? "Product category" : "Категория товара");
         numberField.setPromptText(isEng ? "Number of products" : "Количество товара");
+        categoryLabel.setText(isEng ? "Select the category ↓" : "Выберите категорию ↓");
+        measUnitLabel.setText(isEng ? "Select the measure unit ↓" : "Выберите ед.измерения ↓");
+        nameLabel.setText(isEng ? "Enter the name of goods:" : "Вводите название товара:");
+        numberLabel.setText(isEng ? "Enter the number of goods:" : "Введите количество товаров:");
+        priceLabel.setText(isEng ? "Enter the price of one goods:" : "Введите цену одного товара:");
+        nameField.setPromptText(isEng ? "Name of goods" : "Название товара");
+        numberField.setPromptText(isEng ? "Number of goods" : "Количество товара");
+        priceField.setPromptText(isEng ? "Price of one goods" : "Цена одного товара");
     }
-
 }

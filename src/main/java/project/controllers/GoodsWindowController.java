@@ -1,10 +1,7 @@
 package project.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.hibernate.Session;
@@ -28,9 +25,6 @@ public class GoodsWindowController {
     private Button backBtn;
 
     @FXML
-    private CheckBox categoryCheckBox;
-
-    @FXML
     private Label categoryLabel;
 
     @FXML
@@ -43,31 +37,28 @@ public class GoodsWindowController {
     private VBox containerOfGoodsPanes;
 
     @FXML
+    private ChoiceBox<String> criteriaChooseBox;
+
+    @FXML
     private Button deleteBtn;
+
+    @FXML
+    private Button dropBtn;
 
     @FXML
     private Button editBtn;
 
     @FXML
-    private CheckBox idCheckBox;
-
-    @FXML
     private Label idLabel;
 
     @FXML
-    private CheckBox nameCheckBox;
+    private Label labelCriteria;
 
     @FXML
     private Label nameLabel;
 
     @FXML
-    private CheckBox numberCheckBox;
-
-    @FXML
     private Label numberLabel;
-
-    @FXML
-    private CheckBox priceCheckBox;
 
     @FXML
     private Label priceLabel;
@@ -77,9 +68,6 @@ public class GoodsWindowController {
 
     @FXML
     private TextField substringField;
-
-    @FXML
-    private Button dropBtn;
 
     @FXML
     void initialize() {
@@ -95,8 +83,10 @@ public class GoodsWindowController {
     }
 
     private void searchGood() {
+        boolean isInt = false;
         boolean isEng = Handler.isEng();
-        if (!nameCheckBox.isSelected() && !numberCheckBox.isSelected() && !priceCheckBox.isSelected() && !idCheckBox.isSelected()) {
+        if (criteriaChooseBox.getSelectionModel().getSelectedItem() == null ||
+                criteriaChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
             Handler.openInfoAlert(isEng ? "SELECT PARAMETERS FOR THE SEARCH" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ПОИСКА",
                     isEng ? "First select parameters and try to search again" : "Сначала выберите параметры и попробуйте поиск ещё раз.");
             return;
@@ -106,18 +96,55 @@ public class GoodsWindowController {
                     isEng ? "First enter the criteria for search." : "Сначала введите критерий для поиска.");
             return;
         }
+        String criteria = criteriaChooseBox.getSelectionModel().getSelectedItem();
         String substring = substringField.getText();
         Session session = HibernateUtility.getCurrentSession();
-        String strQuery = "from Goods where enterprise = :enterprise";
-        if (nameCheckBox.isSelected()) {
-            strQuery += " and name like '%" + substring + "%'";
+        String hql = "from Goods where enterprise = :enterprise and ";
+        switch (criteria) {
+            case "Name":
+            case "Название":
+                hql += "name like :substring";
+                break;
+            case "Category":
+            case "Категория":
+                hql += "category like :substring";
+                break;
+            case "Id":
+            case "Номер":
+                hql += "id = :substring";
+                isInt = true;
+                break;
+            case "Number":
+            case "Количество":
+                hql += "number = :substring";
+                isInt = true;
+                break;
+            case "Price":
+            case "Цена":
+                hql += "price = :substring";
+                isInt = true;
+                break;
+            default:
+                Handler.openInfoAlert(isEng ? "INVALID CRITERIA SELECTED" : "НЕДОПУСТИМЫЙ КРИТЕРИЙ",
+                        isEng ? "Please select valid criteria." : "Пожалуйста, выберите допустимый критерий.");
+                return;
         }
-        Query<Goods> query = session.createQuery(strQuery, Goods.class);
+        Query<Goods> query = session.createQuery(hql, Goods.class);
         query.setParameter("enterprise", Handler.getCurrentEnterprise());
+        if (isInt) {
+            try {
+                query.setParameter("substring", Integer.valueOf(substring));
+            } catch (NumberFormatException e) {
+                Handler.openErrorAlert(isEng ? "YOU HAVE ENTERED CHARACTERS INSTEAD OF DIGITS" : "ВЫ ВВЕЛИ СИМВОЛЫ ВМЕСТО ЦИФР",
+                        isEng ? "Please, enter digits only." : "Пожалуйста, введите только цифры.");
+                return;
+            }
+        } else {
+            query.setParameter("substring", "%" + substring + "%");
+        }
         List<Goods> goods = query.list();
         fillTheVBox(goods);
     }
-
 
     private void changeLanguage() {
         Handler.setEng(!Handler.isEng());
@@ -137,12 +164,16 @@ public class GoodsWindowController {
         numberLabel.setText(isEng ? "Number" : "Количество");
         categoryLabel.setText(isEng ? "Category" : "Категория");
         priceLabel.setText(isEng ? "Price" : "Цена");
-        idCheckBox.setText(isEng ? "Id" : "Номер");
-        categoryCheckBox.setText(isEng ? "Category" : "Категория");
-        nameCheckBox.setText(isEng ? "Name" : "Название");
-        numberCheckBox.setText(isEng ? "Number" : "Кол-во");
-        priceCheckBox.setText(isEng ? "Price" : "Цена");
+        criteriaChooseBox.getSelectionModel().clearSelection();
+        criteriaChooseBox.getItems().clear();
+        criteriaChooseBox.getItems().addAll(isEng ? "Id" : "Номер",
+                isEng ? "Category" : "Категория",
+                isEng ? "Name" : "Название",
+                isEng ? "Number" : "Количество",
+                isEng ? "Price" : "Цена");
         dropBtn.setText(isEng ? "Drop" : "Сброс");
+        labelCriteria.setText(isEng ? "<- Select\nthe criteria"
+                : "<- Выберите\nкритерий");
     }
 
     private void fillTheVBox(List<Goods> goodsList) {
@@ -160,14 +191,7 @@ public class GoodsWindowController {
     }
 
     public void dropSearch() {
-        dropCheckBoxes();
+        criteriaChooseBox.getSelectionModel().clearSelection();
         fillTheVBox(Handler.getGoods());
-    }
-
-    private void dropCheckBoxes() {
-        nameCheckBox.setSelected(false);
-        numberCheckBox.setSelected(false);
-        priceCheckBox.setSelected(false);
-        categoryCheckBox.setSelected(false);
     }
 }
