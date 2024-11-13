@@ -6,29 +6,31 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Collection;
 
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-@Table (name = "categories")
-@ToString
-public class Category implements Serializable {
+@Entity
+@Table (name = "units_measure")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@Builder
+public class MeasureUnit implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
+    private String symbol;
+
+    @ManyToOne
     @JoinColumn(name = "entp_id")
-    @ManyToOne(fetch = FetchType.LAZY)
     private Enterprise enterprise;
 
     @OneToMany
     @ToString.Exclude
     private Collection<Goods> goods;
 
-    public String toString() {
-        return name;
-    }
+    public String toString() {return symbol + "|" + name;}
 }

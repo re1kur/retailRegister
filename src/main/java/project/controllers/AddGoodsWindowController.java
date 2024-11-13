@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import org.hibernate.Session;
 import project.entity.Category;
 import project.entity.Goods;
+import project.entity.MeasureUnit;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
@@ -37,7 +38,7 @@ public class AddGoodsWindowController {
     private Label measUnitLabel;
 
     @FXML
-    private ChoiceBox<?> measureUnitsChoiceBox;
+    private ChoiceBox<MeasureUnit> measureUnitsChoiceBox;
 
     @FXML
     private TextField nameField;
@@ -61,6 +62,7 @@ public class AddGoodsWindowController {
     void initialize() {
         setLanguageInterface();
         categoriesChoiceBox.getItems().addAll(Handler.getCategories());
+        measureUnitsChoiceBox.getItems().addAll(Handler.getUnitsMeasurement());
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
         addBtn.setOnAction(_ -> addGoods());
@@ -102,6 +104,7 @@ public class AddGoodsWindowController {
     private void addGoods() {
         boolean isEng = Handler.isEng();
         if (!checkFields(isEng)) return;
+        MeasureUnit measureUnit = measureUnitsChoiceBox.getSelectionModel().getSelectedItem();
         Category category = categoriesChoiceBox.getSelectionModel().getSelectedItem();
         String name = nameField.getText();
         Integer number = Integer.parseInt(numberField.getText());
@@ -110,6 +113,7 @@ public class AddGoodsWindowController {
                 .name(name)
                 .category(category)
                 .number(number)
+                .measureUnit(measureUnit)
                 .price(price)
                 .enterprise(Handler.getCurrentEnterprise())
                 .build();

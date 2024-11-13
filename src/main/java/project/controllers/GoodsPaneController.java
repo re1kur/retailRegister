@@ -25,7 +25,17 @@ public class GoodsPaneController {
         idValueLabel.setText(String.valueOf(GoodsPane.getGoods().getId()));
         nameValueLabel.setText(GoodsPane.getGoods().getName());
         categoryValueLabel.setText(GoodsPane.getGoods().getCategory().getName());
-        numberValueLabel.setText(GoodsPane.getGoods().getNumber().toString());
+        numberValueLabel.setText(getNumber());
         priceValueLabel.setText(GoodsPane.getGoods().getPrice().toString());
+    }
+
+    private String getNumber() {
+        String number = GoodsPane.getGoods().getNumber().toString();
+        try {
+            String symbol = GoodsPane.getGoods().getMeasureUnit().getSymbol();
+            return number + symbol;
+        } catch (NullPointerException _) {
+            return number;
+        }
     }
 }

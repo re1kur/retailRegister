@@ -15,16 +15,13 @@ import project.Main;
 import project.entity.Category;
 import project.entity.Enterprise;
 import project.entity.Goods;
+import project.entity.MeasureUnit;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
 public class Handler {
-    @Getter
-    @Setter
-    private static Scene lastScene;
-
     @Setter
     @Getter
     private static Stage mainStage;
@@ -129,5 +126,13 @@ public class Handler {
                 Category.class);
         query.setParameter("enterprise", getCurrentEnterprise());
         return query.getResultList();
+    }
+
+    public static List<MeasureUnit> getUnitsMeasurement() {
+        Session session = HibernateUtility.getCurrentSession();
+        Query<MeasureUnit> query = session.createQuery("from MeasureUnit where enterprise = :enterprise",
+                MeasureUnit.class);
+        query.setParameter("enterprise", currentEnterprise);
+        return query.list();
     }
 }

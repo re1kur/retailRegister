@@ -10,7 +10,6 @@ import project.entity.Goods;
 import project.entity.GoodsPane;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
-
 import java.util.List;
 
 public class GoodsWindowController {
@@ -40,6 +39,9 @@ public class GoodsWindowController {
     private ChoiceBox<String> criteriaChooseBox;
 
     @FXML
+    private ChoiceBox<String> methodBox;
+
+    @FXML
     private Button deleteBtn;
 
     @FXML
@@ -67,22 +69,44 @@ public class GoodsWindowController {
     private Button searchBtn;
 
     @FXML
+    private AnchorPane searchPane;
+
+    @FXML
     private TextField substringField;
 
     @FXML
     void initialize() {
-        fillTheVBox(Handler.getGoods());
         setLanguageInterface();
+        fillTheVBox(Handler.getGoods());
+        methodBox.setOnAction(_ -> setMethod());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
         backBtn.setOnAction(_ -> Handler.changeScene("mainWindow"));
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         addBtn.setOnAction(_ -> Handler.changeScene("addGoodsWindow"));
         deleteBtn.setOnAction(_ -> Handler.changeScene("deleteGoodsWindow"));
         dropBtn.setOnAction(_ -> dropSearch());
-        searchBtn.setOnAction(_ -> searchGood());
+        searchBtn.setOnAction(_ -> searchGoods());
+    }
+    private void setMethod() {
+        if (methodBox.getSelectionModel().getSelectedItem().isEmpty() |
+        methodBox.getSelectionModel().getSelectedItem() == null) return;
+        searchPane.setVisible(false);
+        String method = methodBox.getSelectionModel().getSelectedItem();
+        switch (method){
+            case "Search":
+            case "Поиск":
+                searchPane.setVisible(true);
+                break;
+            case "Sort":
+            case "Сортировка":
+                break;
+            case "Filter":
+            case "Фильтровка":
+                break;
+        }
     }
 
-    private void searchGood() {
+    private void searchGoods() {
         boolean isInt = false;
         boolean isEng = Handler.isEng();
         if (criteriaChooseBox.getSelectionModel().getSelectedItem() == null ||
@@ -104,10 +128,6 @@ public class GoodsWindowController {
             case "Name":
             case "Название":
                 hql += "name like :substring";
-                break;
-            case "Category":
-            case "Категория":
-                hql += "category like :substring";
                 break;
             case "Id":
             case "Номер":
@@ -166,11 +186,17 @@ public class GoodsWindowController {
         priceLabel.setText(isEng ? "Price" : "Цена");
         criteriaChooseBox.getSelectionModel().clearSelection();
         criteriaChooseBox.getItems().clear();
-        criteriaChooseBox.getItems().addAll(isEng ? "Id" : "Номер",
-                isEng ? "Category" : "Категория",
+        criteriaChooseBox.getItems().addAll(
+                isEng ? "Id" : "Номер",
                 isEng ? "Name" : "Название",
                 isEng ? "Number" : "Количество",
                 isEng ? "Price" : "Цена");
+        methodBox.getSelectionModel().clearSelection();
+        methodBox.getItems().clear();
+        methodBox.getItems().addAll(
+                isEng ? "Search" : "Поиск",
+                isEng ? "Sort" : "Сортировка",
+                isEng ? "Filter" : "Фильтровка");
         dropBtn.setText(isEng ? "Drop" : "Сброс");
         labelCriteria.setText(isEng ? "<- Select\nthe criteria"
                 : "<- Выберите\nкритерий");

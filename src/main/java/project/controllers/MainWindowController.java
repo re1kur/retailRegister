@@ -49,6 +49,7 @@ public class MainWindowController {
         goodsBtn.setOnAction(_ ->
                 Handler.changeScene("goodsWindow"));
         categoriesBtn.setOnAction(_ ->Handler.changeScene("categoriesWindow"));
+        unitsMeasurementBtn.setOnAction(_ -> Handler.changeScene("unitsMeasurementWindow"));
     }
 
     private void changeLanguage () {

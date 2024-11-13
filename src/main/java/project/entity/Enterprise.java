@@ -43,4 +43,8 @@ public class Enterprise implements Serializable {
     @OneToMany(mappedBy = "enterprise")
     private Collection<Category> categories;
 
+    @ToString.Exclude
+    @OneToMany
+    private Collection<MeasureUnit> unitsMeasure;
+
 }

@@ -16,6 +16,7 @@
     <mapping class="project.entity.Employee"/>
     <mapping class="project.entity.Goods"/>
     <mapping class="project.entity.Category"/>
+    <mapping class="project.entity.MeasureUnit"/>
 
 
 

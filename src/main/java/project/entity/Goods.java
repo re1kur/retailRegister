@@ -31,4 +31,8 @@ public class Goods {
     @JoinColumn(name = "entp_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Enterprise enterprise;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "measure_unit_id")
+    private MeasureUnit measureUnit;
 }
