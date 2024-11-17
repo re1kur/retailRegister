@@ -14,6 +14,7 @@ import java.util.List;
 
 public class GoodsWindowController {
 
+
     @FXML
     private Button addBtn;
 
@@ -39,22 +40,40 @@ public class GoodsWindowController {
     private ChoiceBox<String> criteriaChooseBox;
 
     @FXML
-    private ChoiceBox<String> methodBox;
-
-    @FXML
     private Button deleteBtn;
 
     @FXML
     private Button dropBtn;
 
     @FXML
+    private Button dropFilterBtn;
+
+    @FXML
+    private Button dropSortBtn;
+
+    @FXML
     private Button editBtn;
+
+    @FXML
+    private Button filterBtn;
+
+    @FXML
+    private ChoiceBox<String> filterChooseBox;
+
+    @FXML
+    private AnchorPane filterPane;
 
     @FXML
     private Label idLabel;
 
     @FXML
     private Label labelCriteria;
+
+    @FXML
+    private Label labelFilter;
+
+    @FXML
+    private ChoiceBox<String> methodBox;
 
     @FXML
     private Label nameLabel;
@@ -72,7 +91,19 @@ public class GoodsWindowController {
     private AnchorPane searchPane;
 
     @FXML
+    private Button sortBtn;
+
+    @FXML
+    private ChoiceBox<String> sortChooseBox;
+
+    @FXML
+    private AnchorPane sortPane;
+
+    @FXML
     private TextField substringField;
+
+    @FXML
+    private TextField substringFilterField;
 
     @FXML
     void initialize() {
@@ -86,11 +117,92 @@ public class GoodsWindowController {
         deleteBtn.setOnAction(_ -> Handler.changeScene("deleteGoodsWindow"));
         dropBtn.setOnAction(_ -> dropSearch());
         searchBtn.setOnAction(_ -> searchGoods());
+        sortBtn.setOnAction(_ -> sortGoods());
+        filterBtn.setOnAction(_ -> filterGoods());
     }
+
+    private void filterGoods() {
+        boolean isEng = Handler.isEng();
+        if (filterChooseBox.getSelectionModel().getSelectedItem() == null ||
+                filterChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
+            Handler.openInfoAlert(
+                    isEng ? "SELECT PARAMETERS FOR THE FILTER" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ФИЛЬТРОВКИ",
+                    isEng ? "First select parameters and try to filter again" : "Сначала выберите параметры и попробуйте фильтрацию ещё раз."
+            );
+            return;
+        }
+        String choice = filterChooseBox.getSelectionModel().getSelectedItem();
+        Session session = HibernateUtility.getCurrentSession();
+        int filterValue;
+        try {
+            filterValue = Integer.parseInt(substringFilterField.getText());
+        } catch (NumberFormatException e) {
+            Handler.openInfoAlert(
+                    isEng ? "INVALID INPUT" : "НЕДОПУСТИМЫЙ ВВОД",
+                    isEng ? "Please enter a valid number." : "Пожалуйста, введите допустимое число."
+            );
+            return;
+        }
+        String hql = "from Goods where enterprise = :enterprise and " + getFilterColumn(choice) + " :entered";
+        Query<Goods> query = session.createQuery(hql, Goods.class);
+        query.setParameter("enterprise", Handler.getCurrentEnterprise());
+        query.setParameter("entered", filterValue);
+        List<Goods> goodsList = query.list();
+        fillTheVBox(goodsList);
+    }
+
+    private String getFilterColumn(String choice) {
+        return switch (choice) {
+            case "Price > N", "Цена > N" -> "price >";
+            case "Price < N", "Цена < N" -> "price <";
+            case "Number > N", "Кол-во > N" -> "number >";
+            case "Number < N", "Кол-во < N" -> "number <";
+            case "Id < N" -> "id <";
+            case "Id > N" -> "id >";
+            default -> throw new IllegalArgumentException("Invalid filter column: " + choice);
+        };
+    }
+
+    private void sortGoods() {
+        boolean isEng = Handler.isEng();
+        if (sortChooseBox.getSelectionModel().getSelectedItem() == null ||
+                sortChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
+            Handler.openInfoAlert(
+                    isEng ? "SELECT PARAMETERS FOR THE SORT" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ СОРТИРОВКИ",
+                    isEng ? "First select parameters and try to sort again" : "Сначала выберите параметры и попробуйте сортировку ещё раз."
+            );
+            return;
+        }
+        String choice = sortChooseBox.getSelectionModel().getSelectedItem();
+        Session session = HibernateUtility.getCurrentSession();
+        String hql = "from Goods where enterprise = :enterprise order by " + getSortColumn(choice);
+        Query<Goods> query = session.createQuery(hql, Goods.class);
+        query.setParameter("enterprise", Handler.getCurrentEnterprise());
+        List<Goods> goodsList = query.list();
+        fillTheVBox(goodsList);
+    }
+
+    private String getSortColumn(String choice) {
+        return switch (choice) {
+            case "Name ASC", "Название ASC" -> "name ASC";
+            case "Name DESC", "Название DESC" -> "name DESC";
+            case "Price ASC", "Цена ASC" -> "price ASC";
+            case "Price DESC", "Цена DESC" -> "price DESC";
+            case "Number ASC", "Кол-во ASC" -> "number ASC";
+            case "Number DESC", "Кол-во DESC" -> "number DESC";
+            case "Id ASC" -> "id ASC";
+            case "Id DESC" -> "id DESC";
+            default -> throw new IllegalArgumentException("Invalid sort choice: " + choice);
+        };
+    }
+
     private void setMethod() {
-        if (methodBox.getSelectionModel().getSelectedItem().isEmpty() |
-        methodBox.getSelectionModel().getSelectedItem() == null) return;
+        if (methodBox.getSelectionModel().getSelectedItem() == null||
+                methodBox.getSelectionModel().getSelectedItem().isEmpty()
+        ) return;
         searchPane.setVisible(false);
+        sortPane.setVisible(false);
+        filterPane.setVisible(false);
         String method = methodBox.getSelectionModel().getSelectedItem();
         switch (method){
             case "Search":
@@ -99,9 +211,11 @@ public class GoodsWindowController {
                 break;
             case "Sort":
             case "Сортировка":
+                sortPane.setVisible(true);
                 break;
             case "Filter":
             case "Фильтровка":
+                filterPane.setVisible(true);
                 break;
         }
     }
@@ -191,6 +305,28 @@ public class GoodsWindowController {
                 isEng ? "Name" : "Название",
                 isEng ? "Number" : "Количество",
                 isEng ? "Price" : "Цена");
+        sortChooseBox.getSelectionModel().clearSelection();
+        sortChooseBox.getItems().clear();
+        sortChooseBox.getItems().addAll(
+                isEng ? "Name ASC" : "Название ASC",
+                isEng ? "Name DESC" : "Название DESC",
+                isEng ? "Price ASC" : "Цена ASC",
+                isEng ? "Price DESC" : "Цена DESC",
+                isEng ? "Number ASC" : "Кол-во ASC",
+                isEng ? "Number DESC" : "Кол-во DESC",
+                "Id ASC", "Id DESC"
+        );
+        sortBtn.setText(isEng ? "Sort" : "Сортировка");
+        filterChooseBox.getSelectionModel().clearSelection();
+        filterChooseBox.getItems().clear();
+        filterChooseBox.getItems().addAll(
+                isEng ? "Price > N" : "Цена > N",
+                isEng ? "Price < N" : "Цена < N",
+                isEng ? "Number > N" : "Кол-во > N",
+                isEng ? "Number < N" : "Кол-во < N",
+                "Id < N", "Id > N"
+        );
+        filterBtn.setText(isEng ? "Filter" : "Фильтр");
         methodBox.getSelectionModel().clearSelection();
         methodBox.getItems().clear();
         methodBox.getItems().addAll(
@@ -198,7 +334,11 @@ public class GoodsWindowController {
                 isEng ? "Sort" : "Сортировка",
                 isEng ? "Filter" : "Фильтровка");
         dropBtn.setText(isEng ? "Drop" : "Сброс");
+        dropSortBtn.setText(isEng ? "Drop" : "Сброс");
+        dropFilterBtn.setText(isEng ? "Drop" : "Сброс");
         labelCriteria.setText(isEng ? "<- Select\nthe criteria"
+                : "<- Выберите\nкритерий");
+        labelFilter.setText(isEng ? "<- Select\nthe criteria"
                 : "<- Выберите\nкритерий");
     }
 

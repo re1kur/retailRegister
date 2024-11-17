@@ -20,9 +20,6 @@ public class AddCategoryWindowController {
     private Button addBtn;
 
     @FXML
-    private Button changeLanguageBtn;
-
-    @FXML
     private Button closeWindowBtn;
 
     @FXML
@@ -32,7 +29,6 @@ public class AddCategoryWindowController {
     void initialize() {
         setLanguageInterface();
         addBtn.setOnAction(_ -> addCategory());
-        changeLanguageBtn.setOnAction(_ -> changeLanguage());
         closeWindowBtn.setOnAction(_ -> nameField.getScene().getWindow().hide());
     }
     private boolean checkFields(boolean isEng) {
@@ -75,15 +71,9 @@ public class AddCategoryWindowController {
         return clone.equals(category);
     }
 
-    private void changeLanguage() {
-        Handler.setEng(!Handler.isEng());
-        setLanguageInterface();
-    }
-
     private void setLanguageInterface() {
         boolean isEng = Handler.isEng();
         addBtn.setText(isEng ? "Add" : "Добавить");
         label.setText(isEng ? "Enter the name of category ↓" : "Введите название категории ↓");
-        changeLanguageBtn.setText(isEng ? "en" : "ru");
     }
 }

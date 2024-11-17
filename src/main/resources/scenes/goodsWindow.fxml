@@ -102,7 +102,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <AnchorPane fx:id="searchPane" layoutX="50.0" layoutY="45.0" visible="false">
+      <AnchorPane fx:id="searchPane" layoutX="50.0" layoutY="45.0">
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="190.4" style="-fx-background-color: transparent;">
                <children>
@@ -134,14 +134,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <Label fx:id="labelCriteria" alignment="CENTER" layoutX="286.0" textFill="#fafafa">
+            <Label fx:id="labelCriteria" alignment="CENTER" layoutX="287.0" textFill="#fafafa">
                <font>
-                  <Font name="Calibri" size="11.0" />
+                  <Font name="Calibri" size="10.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <ChoiceBox fx:id="methodBox" layoutX="15.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="27.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 8;">
+      <ChoiceBox fx:id="methodBox" focusTraversable="false" layoutX="15.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="25.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 8;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -153,5 +153,73 @@
             </InnerShadow>
          </effect>
       </ChoiceBox>
+      <AnchorPane fx:id="sortPane" layoutX="50.0" layoutY="45.0" visible="false">
+         <children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="220.4" style="-fx-background-color: transparent;">
+               <children>
+                  <ChoiceBox fx:id="sortChooseBox" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: white;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+                  <Button fx:id="sortBtn" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="dropSortBtn" alignment="CENTER" layoutX="347.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="9.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="filterPane" layoutX="50.0" layoutY="45.0" visible="false">
+         <children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="205.4" style="-fx-background-color: transparent;">
+               <children>
+                  <TextField fx:id="substringFilterField" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-width: 1;">
+                     <font>
+                        <Font name="Calibri" size="12.5" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="filterBtn" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="dropFilterBtn" alignment="CENTER" layoutX="347.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="9.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ChoiceBox fx:id="filterChooseBox" focusTraversable="false" layoutX="215.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="80.0" style="-fx-background-color: transparent; -fx-border-color: white;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label fx:id="labelFilter" alignment="CENTER" layoutX="300.0" textFill="#fafafa">
+               <font>
+                  <Font name="Calibri" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

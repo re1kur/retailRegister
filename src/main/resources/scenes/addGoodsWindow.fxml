@@ -66,7 +66,7 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="measureUnitsChoiceBox" focusTraversable="false" layoutX="221.0" layoutY="146.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 7;" />
+            <ChoiceBox fx:id="measureUnitsChoiceBox" focusTraversable="false" layoutX="225.0" layoutY="146.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 7;" />
             <Label fx:id="measUnitLabel" alignment="CENTER" layoutX="210.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Select the measure unit ↓" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
