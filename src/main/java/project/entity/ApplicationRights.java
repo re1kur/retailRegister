@@ -4,5 +4,5 @@ public enum ApplicationRights {
     Owner,
     Admin,
     Employee,
-    User
+    Guest
 }

@@ -9,8 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import project.entity.Category;
 import project.entity.CategoryPane;
-import project.entity.Goods;
-import project.entity.GoodsPane;
 import project.handlers.Handler;
 
 import java.util.List;
@@ -76,7 +74,10 @@ public class CategoriesWindowController {
             Handler.openModalWindow("addCategoryWindow");
             fillTheVBox(Handler.getCategories());
         });
-
+        deleteBtn.setOnAction(_ -> {
+            Handler.openModalWindow("deleteCategoryWindow");
+            fillTheVBox(Handler.getCategories());
+        });
     }
 
     private void changeLanguage() {

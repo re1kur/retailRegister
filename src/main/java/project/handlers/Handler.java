@@ -34,14 +34,9 @@ public class Handler {
     @Getter
     private static Enterprise currentEnterprise;
 
-    public static void reloadEnterprise() {
-        HibernateUtility.getCurrentSession().getTransaction().begin();
-        HibernateUtility.getCurrentSession().clear();
-        currentEnterprise = HibernateUtility.getCurrentSession()
-                .get(Enterprise.class, currentEnterprise.getId());
-        HibernateUtility.getCurrentSession().getTransaction().commit();
-        HibernateUtility.getCurrentSession().close();
-    }
+    @Getter
+    @Setter
+    private static Goods enteredGoods;
 
     public static void openModalWindow(String fxmlFileName) {
         Parent root = null;
