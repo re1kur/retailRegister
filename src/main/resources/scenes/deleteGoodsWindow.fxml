@@ -2,24 +2,15 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="142.0" prefWidth="270.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DeleteGoodsWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="250.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DeleteGoodsWindowController">
     <children>
-        <Button fx:id="changeLanguageBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
-            <font>
-                <Font name="Segoe UI" size="17.0" />
-            </font>
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-        </Button>
-        <Button fx:id="closeWindowBtn" layoutX="228.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
+        <Button fx:id="closeWindowBtn" layoutX="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
             <font>
                 <Font name="Cambria Bold Italic" size="18.0" />
             </font>
@@ -27,18 +18,13 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Line endX="270.0" layoutY="30.0" stroke="WHITE" />
-        <Label layoutX="149.0" layoutY="7.0" />
-        <TextField fx:id="field" layoutX="25.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" />
-        <Button fx:id="deleteBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="178.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="66.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="delete" textFill="WHITE">
-            <font>
-                <Font size="10.0" />
-            </font>
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-        </Button>
-        <Button fx:id="backBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="25.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="back" textFill="WHITE">
+        <Line endX="250.0" layoutY="30.0" stroke="WHITE" />
+        <Label fx:id="label" alignment="CENTER" layoutX="16.0" layoutY="59.0" prefHeight="18.0" prefWidth="220.0" text="Enter the goods id to delete" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font></Label>
+        <TextField fx:id="field" layoutX="15.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" />
+        <Button fx:id="deleteBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="92.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="66.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="delete" textFill="WHITE">
             <font>
                 <Font size="10.0" />
             </font>
@@ -51,11 +37,5 @@
                 <Font size="8.0" />
             </font>
         </Label>
-      <ChoiceBox fx:id="choiceToDelete" layoutX="25.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: white;" />
-      <Label fx:id="label" layoutX="83.0" layoutY="39.0" text="&lt;- select to delete" textFill="WHITE">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
     </children>
 </AnchorPane>

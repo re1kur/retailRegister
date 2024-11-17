@@ -10,6 +10,7 @@ import project.entity.Goods;
 import project.entity.GoodsPane;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
+
 import java.util.List;
 
 public class GoodsWindowController {
@@ -44,12 +45,6 @@ public class GoodsWindowController {
 
     @FXML
     private Button dropBtn;
-
-    @FXML
-    private Button dropFilterBtn;
-
-    @FXML
-    private Button dropSortBtn;
 
     @FXML
     private Button editBtn;
@@ -114,11 +109,17 @@ public class GoodsWindowController {
         backBtn.setOnAction(_ -> Handler.changeScene("mainWindow"));
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         addBtn.setOnAction(_ -> Handler.changeScene("addGoodsWindow"));
-        deleteBtn.setOnAction(_ -> Handler.changeScene("deleteGoodsWindow"));
-        dropBtn.setOnAction(_ -> dropSearch());
+        deleteBtn.setOnAction(_ -> {
+            Handler.openModalWindow("deleteGoodsWindow");
+            fillTheVBox(Handler.getGoods());
+        });
+        dropBtn.setOnAction(_ -> fillTheVBox(Handler.getGoods()));
         searchBtn.setOnAction(_ -> searchGoods());
         sortBtn.setOnAction(_ -> sortGoods());
         filterBtn.setOnAction(_ -> filterGoods());
+        editBtn.setOnAction(_ -> {
+            Handler.openModalWindow("enterGoodsToEditWindow");
+        });
     }
 
     private void filterGoods() {
@@ -197,14 +198,14 @@ public class GoodsWindowController {
     }
 
     private void setMethod() {
-        if (methodBox.getSelectionModel().getSelectedItem() == null||
+        if (methodBox.getSelectionModel().getSelectedItem() == null ||
                 methodBox.getSelectionModel().getSelectedItem().isEmpty()
         ) return;
         searchPane.setVisible(false);
         sortPane.setVisible(false);
         filterPane.setVisible(false);
         String method = methodBox.getSelectionModel().getSelectedItem();
-        switch (method){
+        switch (method) {
             case "Search":
             case "Поиск":
                 searchPane.setVisible(true);
@@ -334,8 +335,6 @@ public class GoodsWindowController {
                 isEng ? "Sort" : "Сортировка",
                 isEng ? "Filter" : "Фильтровка");
         dropBtn.setText(isEng ? "Drop" : "Сброс");
-        dropSortBtn.setText(isEng ? "Drop" : "Сброс");
-        dropFilterBtn.setText(isEng ? "Drop" : "Сброс");
         labelCriteria.setText(isEng ? "<- Select\nthe criteria"
                 : "<- Выберите\nкритерий");
         labelFilter.setText(isEng ? "<- Select\nthe criteria"
@@ -354,10 +353,5 @@ public class GoodsWindowController {
             containerOfGoodsPanes.
                     getChildren().add(new GoodsPane(goods));
         }
-    }
-
-    public void dropSearch() {
-        criteriaChooseBox.getSelectionModel().clearSelection();
-        fillTheVBox(Handler.getGoods());
     }
 }

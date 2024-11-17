@@ -46,7 +46,7 @@
       </HBox>
         <Button fx:id="changeLanguageBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
             <font>
-                <Font name="Segoe UI" size="17.0" />
+                <Font name="Calibri" size="17.0" />
             </font>
             <cursor>
                 <Cursor fx:constant="HAND" />
@@ -71,9 +71,9 @@
       </Button>
       <ScrollPane layoutX="50.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="400.0" style="-fx-border-color: black;">
         <content>
-          <AnchorPane fx:id="anchorPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="215.0" prefWidth="395.0" style="-fx-background-color: white;">
+          <AnchorPane fx:id="anchorPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="215.0" prefWidth="381.0" style="-fx-background-color: white;">
                <children>
-                  <VBox fx:id="containerOfGoodsPanes" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="395.0" />
+                  <VBox fx:id="containerOfGoodsPanes" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="384.0" />
                   <HBox layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="385.0">
                      <children>
                         <Label fx:id="idLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="75.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-width: 0.5;" textAlignment="CENTER">
@@ -102,6 +102,14 @@
             </AnchorPane>
         </content>
       </ScrollPane>
+      <Button fx:id="dropBtn" alignment="CENTER" layoutX="399.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="9.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <AnchorPane fx:id="searchPane" layoutX="50.0" layoutY="45.0">
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="190.4" style="-fx-background-color: transparent;">
@@ -121,14 +129,6 @@
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="dropBtn" alignment="CENTER" layoutX="347.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
-               <font>
-                  <Font name="Calibri" size="9.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <ChoiceBox fx:id="criteriaChooseBox" focusTraversable="false" layoutX="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="80.0" style="-fx-background-color: transparent; -fx-border-color: white;">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -172,14 +172,6 @@
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="dropSortBtn" alignment="CENTER" layoutX="347.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
-               <font>
-                  <Font name="Calibri" size="9.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="filterPane" layoutX="50.0" layoutY="45.0" visible="false">
@@ -201,14 +193,6 @@
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="dropFilterBtn" alignment="CENTER" layoutX="347.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" style="-fx-border-radius: 2; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1;" textFill="WHITE">
-               <font>
-                  <Font name="Calibri" size="9.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <ChoiceBox fx:id="filterChooseBox" focusTraversable="false" layoutX="215.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="80.0" style="-fx-background-color: transparent; -fx-border-color: white;">
                <cursor>
                   <Cursor fx:constant="HAND" />
