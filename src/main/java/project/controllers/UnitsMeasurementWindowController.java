@@ -8,12 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import project.entity.MeasureUnit;
-import project.entity.MeasureUnitPane;
+import project.other.MeasureUnitPane;
 import project.handlers.Handler;
 
 import java.util.List;
 
-public class unitsMeasurementWindowController {
+public class UnitsMeasurementWindowController {
 
     @FXML
     private Button addBtn;
@@ -73,6 +73,14 @@ public class unitsMeasurementWindowController {
             fillTheVBox(Handler.getUnitsMeasurement());
         });
         backBtn.setOnAction(_ -> Handler.changeScene("mainWindow"));
+        deleteBtn.setOnAction(_ -> {
+            Handler.openModalWindow("deleteMeasureUnitWindow");
+            fillTheVBox(Handler.getUnitsMeasurement());
+        });
+        editBtn.setOnAction(_ -> {
+            Handler.openModalWindow("enterMeasureUnitToEditWindow");
+            fillTheVBox(Handler.getUnitsMeasurement());
+        });
     }
 
     private void changeLanguage() {

@@ -2,6 +2,7 @@ package project.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import project.other.ApplicationRights;
 
 import java.io.Serializable;
 

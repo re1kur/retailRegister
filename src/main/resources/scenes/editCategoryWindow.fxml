@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditCategoryWindowController">
+    <children>
+        <Button fx:id="closeWindowBtn" layoutX="457.6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
+            <font>
+                <Font name="Cambria Bold Italic" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
+        <Label layoutX="149.0" layoutY="7.0" />
+      <AnchorPane layoutX="135.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="145.0" prefWidth="230.0" style="-fx-border-color: white;">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.2" prefHeight="145.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: white;" />
+              <TextField fx:id="nameField" alignment="CENTER" layoutX="34.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.83" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: white; -fx-background-radius: 15;" />
+              <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutY="50.0" prefHeight="18.0" prefWidth="230.0" text="Enter the name of category ↓" textAlignment="CENTER" textFill="WHITE">
+                  <font>
+                      <Font name="Calibri" size="13.0" />
+                  </font>
+              </Label>
+            <Line endX="230.0" endY="30.0" startY="30.0" stroke="WHITE" />
+            <Label fx:id="pastNameLabel" alignment="CENTER" layoutX="105.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="119.0" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="label2" alignment="CENTER" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" text="Прошлое название:" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="backBtn" alignment="CENTER" contentDisplay="TOP" layoutX="50.0" layoutY="302.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="back" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="editBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="Редактировать" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="11.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="changeLanguageBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+    </children>
+</AnchorPane>

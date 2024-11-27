@@ -72,11 +72,8 @@ public class AddGoodsWindowController {
     private boolean checkFields(boolean isEng) {
         try {
             String name = nameField.getText();
-            Category category = categoriesChoiceBox.getSelectionModel().getSelectedItem();
             if (name.isEmpty()) throw new IOException(isEng ? "Name field is empty." :
                     "Поле названия пустое.");
-            if (category == null) throw new IOException(isEng ? "Category has not been selected." :
-                    "Категория не была выбрана.");
             if (name.length() > 40) throw new IOException(isEng ? "Name field is too long" :
                     "Поле имени слишком длинное.");
             int number = Integer.parseInt(numberField.getText());
@@ -140,7 +137,7 @@ public class AddGoodsWindowController {
 
     private void setLanguageInterface() {
         boolean isEng = Handler.isEng();
-        backBtn.setText(isEng ? "Products" : "Товары");
+        backBtn.setText(isEng ? "Goods" : "Товары");
         addBtn.setText(isEng ? "Add" : "Добавить");
         changeLanguageBtn.setText(isEng ? "en" : "ru");
         nameField.setPromptText(isEng ? "Product name" : "Название товара");

@@ -1,22 +1,22 @@
-package project.entity;
+package project.other;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import project.entity.MeasureUnit;
 
 import java.io.IOException;
 
-public class GoodsPane extends VBox {
+public class MeasureUnitPane extends VBox {
     @Getter
-    private static Goods goods;
+    public static MeasureUnit measureUnit;
 
-
-    public GoodsPane(Goods goods) {
-        GoodsPane.goods = goods;
+    public MeasureUnitPane(MeasureUnit measureUnit) {
+        MeasureUnitPane.measureUnit = measureUnit;
         FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(
-                    "/scenes/goodsPane.fxml"));
+        loader.setLocation(getClass().getResource(
+                "/scenes/unitsMeasurementPane.fxml"));
         Parent root = null;
         try {
             root = loader.load();

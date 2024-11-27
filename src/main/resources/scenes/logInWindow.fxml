@@ -50,7 +50,7 @@
          </cursor>
       </Button>
       <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
-      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="201.0" layoutY="41.0" text="WELCOME" textFill="WHITE">
+      <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="41.0" prefHeight="30.0" prefWidth="250.0" text="WELCOME" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

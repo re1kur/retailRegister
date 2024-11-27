@@ -12,4 +12,6 @@ module retailRegister {
     opens project.entity to org.hibernate.orm.core;
     opens project.handlers to org.hibernate.orm.core, jakarta.persistence;
     opens project;
+    opens project.other to org.hibernate.orm.core;
+
 }

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import project.entity.Category;
 import project.entity.Goods;
@@ -76,11 +77,8 @@ public class EditGoodsWindowController {
     private boolean checkFields(boolean isEng) {
         try {
             String name = nameField.getText();
-            Category category = categoriesChoiceBox.getSelectionModel().getSelectedItem();
             if (name.isEmpty()) throw new IOException(isEng ? "Name field is empty." :
                     "Поле названия пустое.");
-            if (category == null) throw new IOException(isEng ? "Category has not been selected." :
-                    "Категория не была выбрана.");
             if (name.length() > 40) throw new IOException(isEng ? "Name field is too long" :
                     "Поле имени слишком длинное.");
             int number = Integer.parseInt(numberField.getText());
@@ -122,10 +120,18 @@ public class EditGoodsWindowController {
                 .price(price)
                 .enterprise(Handler.getCurrentEnterprise())
                 .build();
-        Session session = HibernateUtility.getCurrentSession();
-        session.beginTransaction();
-        session.merge(goods);
-        session.getTransaction().commit();
+        try {
+            Session session = HibernateUtility.getCurrentSession();
+            session.beginTransaction();
+            session.merge(goods);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            Handler.openErrorAlert(isEng ? "SOMETHING WENT WRONG" : "ЧТО-ТО ПОШЛО НЕ ТАК",
+                    isEng ? "Transaction is rolled back." : "Транзакция отменена.");
+            HibernateUtility.getCurrentSession().getTransaction().rollback();
+            return;
+        }
+        Handler.setEnteredGoods(null);
         Handler.changeScene("goodsWindow");
     }
 
@@ -136,14 +142,14 @@ public class EditGoodsWindowController {
 
     private void setLanguageInterface() {
         boolean isEng = Handler.isEng();
-        backBtn.setText(isEng ? "Products" : "Товары");
+        backBtn.setText(isEng ? "Goods" : "Товары");
         editBtn.setText(isEng ? "Edit" : "Редактировать");
         changeLanguageBtn.setText(isEng ? "en" : "ru");
         nameField.setPromptText(isEng ? "Product name" : "Название товара");
         numberField.setPromptText(isEng ? "Number of products" : "Количество товара");
         categoryLabel.setText(isEng ? "Select the category ↓" : "Выберите категорию ↓");
         measUnitLabel.setText(isEng ? "Select the measure unit ↓" : "Выберите ед.измерения ↓");
-        nameLabel.setText(isEng ? "Enter the name of goods:" : "Вводите название товара:");
+        nameLabel.setText(isEng ? "Enter the name of goods:" : "Введите название товара:");
         numberLabel.setText(isEng ? "Enter the number of goods:" : "Введите количество товаров:");
         priceLabel.setText(isEng ? "Enter the price of one goods:" : "Введите цену одного товара:");
         nameField.setPromptText(isEng ? "Name of goods" : "Название товара");

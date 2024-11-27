@@ -2,7 +2,8 @@ package project.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import project.entity.CategoryPane;
+import project.handlers.Handler;
+import project.other.CategoryPane;
 
 public class CategoryPaneController {
 
@@ -19,6 +20,6 @@ public class CategoryPaneController {
     void initialize() {
         idValueLabel.setText(String.valueOf(CategoryPane.getCategory().getId()));
         nameValueLabel.setText(CategoryPane.getCategory().getName());
-//        numberValueLabel.setText(CategoryPane.getCategory().getNumber().toString());
+        numberValueLabel.setText(Handler.getCategoryNumber(CategoryPane.getCategory()));
     }
 }

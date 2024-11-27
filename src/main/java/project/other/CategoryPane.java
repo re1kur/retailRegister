@@ -1,9 +1,10 @@
-package project.entity;
+package project.other;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import project.entity.Category;
 
 import java.io.IOException;
 

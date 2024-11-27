@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="250.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EnterGoodsToEditWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="250.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EnterCategoryToEditWindowController">
     <children>
         <Button fx:id="closeWindowBtn" layoutX="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
             <font>
@@ -19,12 +19,12 @@
             </cursor>
         </Button>
         <Line endX="250.0" layoutY="30.0" stroke="WHITE" />
-        <Label fx:id="label" alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="18.0" prefWidth="220.0" text="Enter the goods id to edit" textFill="WHITE">
-         <font>
-            <Font name="Calibri" size="13.0" />
-         </font></Label>
+        <Label fx:id="label" alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="18.0" prefWidth="220.0" text="Enter the category id to edit" textFill="WHITE">
+            <font>
+                <Font name="Calibri" size="13.0" />
+            </font></Label>
         <TextField fx:id="field" alignment="CENTER" layoutX="15.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: white;" />
-        <Button fx:id="editBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="80.0" layoutY="123.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="90.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="edit" textFill="WHITE">
+        <Button fx:id="editBtn" alignment="CENTER" contentDisplay="TOP" layoutX="80.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="90.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Редактировать" textFill="WHITE">
             <font>
                 <Font size="10.0" />
             </font>

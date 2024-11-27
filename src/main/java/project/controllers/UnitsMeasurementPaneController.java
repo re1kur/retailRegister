@@ -2,9 +2,9 @@ package project.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import project.entity.MeasureUnitPane;
+import project.other.MeasureUnitPane;
 
-public class unitsMeasurementPaneController {
+public class UnitsMeasurementPaneController {
 
     @FXML
     private Label idValueLabel;

@@ -2,7 +2,8 @@ package project.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import project.entity.GoodsPane;
+import project.handlers.Handler;
+import project.other.GoodsPane;
 
 public class GoodsPaneController {
     @FXML
@@ -24,8 +25,11 @@ public class GoodsPaneController {
     void initialize() {
         idValueLabel.setText(String.valueOf(GoodsPane.getGoods().getId()));
         nameValueLabel.setText(GoodsPane.getGoods().getName());
-        categoryValueLabel.setText(GoodsPane.getGoods().getCategory().getName());
         numberValueLabel.setText(getNumber());
+        try {
+            categoryValueLabel.setText(GoodsPane.getGoods().getCategory().getName());
+        } catch (NullPointerException _) {
+        }
         priceValueLabel.setText(GoodsPane.getGoods().getPrice().toString());
     }
 

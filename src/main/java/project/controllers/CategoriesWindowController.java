@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import project.entity.Category;
-import project.entity.CategoryPane;
+import project.other.CategoryPane;
 import project.handlers.Handler;
 
 import java.util.List;
@@ -78,6 +78,10 @@ public class CategoriesWindowController {
             Handler.openModalWindow("deleteCategoryWindow");
             fillTheVBox(Handler.getCategories());
         });
+        editBtn.setOnAction(_ -> {
+            Handler.openModalWindow("enterCategoryToEditWindow");
+            fillTheVBox(Handler.getCategories());
+        });
     }
 
     private void changeLanguage() {
@@ -96,7 +100,7 @@ public class CategoriesWindowController {
         backBtn.setText(isEng ? "Menu" : "Меню");
         idLabel.setText(isEng ? "Id" : "Номер");
         nameLabel.setText(isEng ? "Name" : "Название");
-        numberLabel.setText(isEng ? "Number" : "Количество");
+        numberLabel.setText(isEng ? "Number of goods" : "Кол-во товаров");
         criteriaChooseBox.getSelectionModel().clearSelection();
         criteriaChooseBox.getItems().clear();
         criteriaChooseBox.getItems().addAll(isEng ? "Id" : "Номер",

@@ -5,11 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.hibernate.Session;
+import project.entity.Category;
 import project.entity.Goods;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
-public class EnterGoodsToEditWindowController {
+public class EnterCategoryToEditWindowController {
 
     @FXML
     private Button closeWindowBtn;
@@ -26,8 +27,8 @@ public class EnterGoodsToEditWindowController {
     @FXML
     void initialize() {
         setLanguageInterface();
-        closeWindowBtn.setOnAction(_ -> editBtn.getScene().getWindow().hide());
         editBtn.setOnAction(_ -> nextActionEdit());
+        closeWindowBtn.setOnAction(_ -> editBtn.getScene().getWindow().hide());
     }
 
     private void nextActionEdit() {
@@ -37,8 +38,8 @@ public class EnterGoodsToEditWindowController {
         try {
             id = Integer.parseInt(field.getText());
             if (!exists(session,id)) {
-                Handler.openInfoAlert(isEng ? "ENTERED GOODS DOESN'T EXISTS" : "ВВЕДЕННЫЙ ТОВАР НЕ СУЩЕСТВУЕТ",
-                        isEng ? "Try other one." : "Попробуйте другой.");
+                Handler.openInfoAlert(isEng ? "ENTERED CATEGORY DOESN'T EXISTS" : "ВВЕДЕННАЯ КАТЕГОРИЯ НЕ СУЩЕСТВУЕТ",
+                        isEng ? "Try other one." : "Попробуйте другую.");
                 return;
             }
         } catch (NumberFormatException _) {
@@ -47,18 +48,18 @@ public class EnterGoodsToEditWindowController {
                             "Введите только числа без других символов или букв.");
             return;
         }
-        Handler.setEnteredGoods(session.find(Goods.class, id));
+        Handler.setEnteredCategory(session.find(Category.class, id));
         closeWindowBtn.getScene().getWindow().hide();
-        Handler.changeScene("editGoodsWindow");
+        Handler.changeScene("editCategoryWindow");
     }
 
     private void setLanguageInterface() {
         boolean isEng = Handler.isEng();
+        label.setText(isEng ? "Enter the category id to edit" : "Введите id категории для редактирования");
         editBtn.setText(isEng ? "Edit" : "Редактировать");
-        label.setText(isEng ? "Enter the goods id to edit it" : "Введите id товара\n для его редактирования");
+    }
+    private boolean exists(Session session, int id) {
+        return session.find(Category.class, id) != null;
     }
 
-    private boolean exists(Session session, int id) {
-        return session.find(Goods.class, id) != null;
-    }
 }

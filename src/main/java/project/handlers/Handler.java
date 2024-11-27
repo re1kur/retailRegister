@@ -38,6 +38,14 @@ public class Handler {
     @Setter
     private static Goods enteredGoods;
 
+    @Setter
+    @Getter
+    private static Category enteredCategory;
+
+    @Setter
+    @Getter
+    private static MeasureUnit enteredMeasureUnit;
+
     public static void openModalWindow(String fxmlFileName) {
         Parent root = null;
         Stage stage = new Stage();
@@ -66,6 +74,14 @@ public class Handler {
         }
         mainStage.setScene(new Scene(root));
         mainStage.show();
+    }
+
+    public static void openYesOrNowWindow(String message) {
+        Stage window = new Stage();
+        window.initStyle(StageStyle.UNDECORATED);
+        window.initModality(Modality.WINDOW_MODAL);
+        window.initOwner(mainStage);
+        window.showAndWait();
     }
 
     public static void openIntroduceWindow() {
@@ -129,5 +145,15 @@ public class Handler {
                 MeasureUnit.class);
         query.setParameter("enterprise", currentEnterprise);
         return query.list();
+    }
+
+    public static String getCategoryNumber(Category category) {
+        Session session = HibernateUtility.getCurrentSession();
+        Query<Goods> query = session.createQuery(
+                "from Goods where enterprise = :enterprise and category = :category",
+                Goods.class);
+        query.setParameter("enterprise", currentEnterprise);
+        query.setParameter("category", category);
+        return String.valueOf(query.list().size());
     }
 }

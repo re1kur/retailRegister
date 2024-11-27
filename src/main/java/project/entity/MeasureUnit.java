@@ -28,7 +28,7 @@ public class MeasureUnit implements Serializable {
     @JoinColumn(name = "entp_id")
     private Enterprise enterprise;
 
-    @OneToMany
+    @OneToMany(mappedBy = "measureUnit")
     @ToString.Exclude
     private Collection<Goods> goods;
 

@@ -1,4 +1,4 @@
-package project.entity;
+package project.other;
 
 public enum ApplicationRights {
     Owner,

@@ -12,7 +12,6 @@ import java.util.Collection;
 @NoArgsConstructor
 @Data
 @Table (name = "categories")
-@ToString
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +23,7 @@ public class Category implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Enterprise enterprise;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category")
     @ToString.Exclude
     private Collection<Goods> goods;
 

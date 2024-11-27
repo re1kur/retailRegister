@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="250.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DeleteCategoryWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="250.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DeleteMeasureUnitWindowController">
     <children>
         <Button fx:id="closeWindowBtn" layoutX="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
             <font>
@@ -20,24 +20,24 @@
             </cursor>
         </Button>
         <Line endX="250.0" layoutY="30.0" stroke="WHITE" />
-        <Label fx:id="label" alignment="CENTER" layoutX="16.0" layoutY="59.0" prefHeight="18.0" prefWidth="220.0" text="Enter the category id to delete" textFill="WHITE">
-         <font>
-            <Font name="Calibri" size="12.0" />
-         </font></Label>
-        <TextField fx:id="field" alignment="CENTER" layoutX="15.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" />
-        <Button fx:id="deleteBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="15.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="80.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Delete" textFill="WHITE">
+        <Label fx:id="label" alignment="CENTER" layoutX="16.0" layoutY="59.0" prefHeight="18.0" prefWidth="220.0" text="Enter measure unit id to delete" textFill="WHITE">
             <font>
                 <Font name="Calibri" size="12.0" />
-            </font>
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-        </Button>
+            </font></Label>
+        <TextField fx:id="field" alignment="CENTER" layoutX="15.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0" />
         <Label layoutX="218.0" layoutY="47.0" textFill="GREY">
             <font>
                 <Font size="8.0" />
             </font>
         </Label>
+      <Button fx:id="deleteBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="15.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="22.0" prefWidth="80.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <RadioButton fx:id="deleteGoodsRbtn" contentDisplay="CENTER" focusTraversable="false" layoutX="110.0" layoutY="125.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="130.0" style="-fx-border-radius: 3; -fx-border-width: 0.3;" text="Delete with goods" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />

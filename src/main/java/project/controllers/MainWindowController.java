@@ -41,6 +41,9 @@ public class MainWindowController {
     private Button unitsMeasurementBtn;
 
     @FXML
+    private Button exitAccountBtn;
+
+    @FXML
     void initialize () {
         setLanguageInterface();
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
@@ -50,6 +53,10 @@ public class MainWindowController {
                 Handler.changeScene("goodsWindow"));
         categoriesBtn.setOnAction(_ ->Handler.changeScene("categoriesWindow"));
         unitsMeasurementBtn.setOnAction(_ -> Handler.changeScene("unitsMeasurementWindow"));
+        exitAccountBtn.setOnAction(_ -> {
+            Handler.setCurrentEnterprise(null);
+            Handler.changeScene("logInWindow");
+        });
     }
 
     private void changeLanguage () {
@@ -67,6 +74,7 @@ public class MainWindowController {
         supportBtn.setText(isEng ? "Support": "Поддержка");
         categoriesBtn.setText(isEng ? "Categories" : "Категории");
         unitsMeasurementBtn.setText(isEng ? "Units of\nmeasurement" : "Единицы\nизмерения");
+        exitAccountBtn.setText(isEng ? "Exit" : "Выйти");
     }
 
 }

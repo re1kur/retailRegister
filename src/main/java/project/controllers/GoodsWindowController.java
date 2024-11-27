@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import project.entity.Goods;
-import project.entity.GoodsPane;
+import project.other.GoodsPane;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
@@ -117,19 +117,14 @@ public class GoodsWindowController {
         searchBtn.setOnAction(_ -> searchGoods());
         sortBtn.setOnAction(_ -> sortGoods());
         filterBtn.setOnAction(_ -> filterGoods());
-        editBtn.setOnAction(_ -> {
-            Handler.openModalWindow("enterGoodsToEditWindow");
-        });
+        editBtn.setOnAction(_ ->
+            Handler.openModalWindow("enterGoodsToEditWindow"));
     }
 
     private void filterGoods() {
         boolean isEng = Handler.isEng();
-        if (filterChooseBox.getSelectionModel().getSelectedItem() == null ||
-                filterChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
-            Handler.openInfoAlert(
-                    isEng ? "SELECT PARAMETERS FOR THE FILTER" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ФИЛЬТРОВКИ",
-                    isEng ? "First select parameters and try to filter again" : "Сначала выберите параметры и попробуйте фильтрацию ещё раз."
-            );
+        if (filterChooseBox.getSelectionModel().getSelectedItem() == null || filterChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
+            Handler.openInfoAlert(isEng ? "SELECT PARAMETERS FOR THE FILTER" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ФИЛЬТРОВКИ", isEng ? "First select parameters and try to filter again" : "Сначала выберите параметры и попробуйте фильтрацию ещё раз.");
             return;
         }
         String choice = filterChooseBox.getSelectionModel().getSelectedItem();
@@ -138,10 +133,7 @@ public class GoodsWindowController {
         try {
             filterValue = Integer.parseInt(substringFilterField.getText());
         } catch (NumberFormatException e) {
-            Handler.openInfoAlert(
-                    isEng ? "INVALID INPUT" : "НЕДОПУСТИМЫЙ ВВОД",
-                    isEng ? "Please enter a valid number." : "Пожалуйста, введите допустимое число."
-            );
+            Handler.openInfoAlert(isEng ? "INVALID INPUT" : "НЕДОПУСТИМЫЙ ВВОД", isEng ? "Please enter a valid number." : "Пожалуйста, введите допустимое число.");
             return;
         }
         String hql = "from Goods where enterprise = :enterprise and " + getFilterColumn(choice) + " :entered";
@@ -166,12 +158,8 @@ public class GoodsWindowController {
 
     private void sortGoods() {
         boolean isEng = Handler.isEng();
-        if (sortChooseBox.getSelectionModel().getSelectedItem() == null ||
-                sortChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
-            Handler.openInfoAlert(
-                    isEng ? "SELECT PARAMETERS FOR THE SORT" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ СОРТИРОВКИ",
-                    isEng ? "First select parameters and try to sort again" : "Сначала выберите параметры и попробуйте сортировку ещё раз."
-            );
+        if (sortChooseBox.getSelectionModel().getSelectedItem() == null || sortChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
+            Handler.openInfoAlert(isEng ? "SELECT PARAMETERS FOR THE SORT" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ СОРТИРОВКИ", isEng ? "First select parameters and try to sort again" : "Сначала выберите параметры и попробуйте сортировку ещё раз.");
             return;
         }
         String choice = sortChooseBox.getSelectionModel().getSelectedItem();
@@ -198,9 +186,8 @@ public class GoodsWindowController {
     }
 
     private void setMethod() {
-        if (methodBox.getSelectionModel().getSelectedItem() == null ||
-                methodBox.getSelectionModel().getSelectedItem().isEmpty()
-        ) return;
+        if (methodBox.getSelectionModel().getSelectedItem() == null || methodBox.getSelectionModel().getSelectedItem().isEmpty())
+            return;
         searchPane.setVisible(false);
         sortPane.setVisible(false);
         filterPane.setVisible(false);
@@ -224,15 +211,12 @@ public class GoodsWindowController {
     private void searchGoods() {
         boolean isInt = false;
         boolean isEng = Handler.isEng();
-        if (criteriaChooseBox.getSelectionModel().getSelectedItem() == null ||
-                criteriaChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
-            Handler.openInfoAlert(isEng ? "SELECT PARAMETERS FOR THE SEARCH" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ПОИСКА",
-                    isEng ? "First select parameters and try to search again" : "Сначала выберите параметры и попробуйте поиск ещё раз.");
+        if (criteriaChooseBox.getSelectionModel().getSelectedItem() == null || criteriaChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
+            Handler.openInfoAlert(isEng ? "SELECT PARAMETERS FOR THE SEARCH" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ПОИСКА", isEng ? "First select parameters and try to search again" : "Сначала выберите параметры и попробуйте поиск ещё раз.");
             return;
         }
         if (substringField.getText().isEmpty()) {
-            Handler.openInfoAlert(isEng ? "THE CRITERIA FOR SEARCH ARE NOT DEFINED" : "КРИТЕРИЙ ПОИСКА НЕ ОПРЕДЕЛЕН",
-                    isEng ? "First enter the criteria for search." : "Сначала введите критерий для поиска.");
+            Handler.openInfoAlert(isEng ? "THE CRITERIA FOR SEARCH ARE NOT DEFINED" : "КРИТЕРИЙ ПОИСКА НЕ ОПРЕДЕЛЕН", isEng ? "First enter the criteria for search." : "Сначала введите критерий для поиска.");
             return;
         }
         String criteria = criteriaChooseBox.getSelectionModel().getSelectedItem();
@@ -260,8 +244,7 @@ public class GoodsWindowController {
                 isInt = true;
                 break;
             default:
-                Handler.openInfoAlert(isEng ? "INVALID CRITERIA SELECTED" : "НЕДОПУСТИМЫЙ КРИТЕРИЙ",
-                        isEng ? "Please select valid criteria." : "Пожалуйста, выберите допустимый критерий.");
+                Handler.openInfoAlert(isEng ? "INVALID CRITERIA SELECTED" : "НЕДОПУСТИМЫЙ КРИТЕРИЙ", isEng ? "Please select valid criteria." : "Пожалуйста, выберите допустимый критерий.");
                 return;
         }
         Query<Goods> query = session.createQuery(hql, Goods.class);
@@ -270,8 +253,7 @@ public class GoodsWindowController {
             try {
                 query.setParameter("substring", Integer.valueOf(substring));
             } catch (NumberFormatException e) {
-                Handler.openErrorAlert(isEng ? "YOU HAVE ENTERED CHARACTERS INSTEAD OF DIGITS" : "ВЫ ВВЕЛИ СИМВОЛЫ ВМЕСТО ЦИФР",
-                        isEng ? "Please, enter digits only." : "Пожалуйста, введите только цифры.");
+                Handler.openErrorAlert(isEng ? "YOU HAVE ENTERED CHARACTERS INSTEAD OF DIGITS" : "ВЫ ВВЕЛИ СИМВОЛЫ ВМЕСТО ЦИФР", isEng ? "Please, enter digits only." : "Пожалуйста, введите только цифры.");
                 return;
             }
         } else {
@@ -301,44 +283,21 @@ public class GoodsWindowController {
         priceLabel.setText(isEng ? "Price" : "Цена");
         criteriaChooseBox.getSelectionModel().clearSelection();
         criteriaChooseBox.getItems().clear();
-        criteriaChooseBox.getItems().addAll(
-                isEng ? "Id" : "Номер",
-                isEng ? "Name" : "Название",
-                isEng ? "Number" : "Количество",
-                isEng ? "Price" : "Цена");
+        criteriaChooseBox.getItems().addAll(isEng ? "Id" : "Номер", isEng ? "Name" : "Название", isEng ? "Number" : "Количество", isEng ? "Price" : "Цена");
         sortChooseBox.getSelectionModel().clearSelection();
         sortChooseBox.getItems().clear();
-        sortChooseBox.getItems().addAll(
-                isEng ? "Name ASC" : "Название ASC",
-                isEng ? "Name DESC" : "Название DESC",
-                isEng ? "Price ASC" : "Цена ASC",
-                isEng ? "Price DESC" : "Цена DESC",
-                isEng ? "Number ASC" : "Кол-во ASC",
-                isEng ? "Number DESC" : "Кол-во DESC",
-                "Id ASC", "Id DESC"
-        );
+        sortChooseBox.getItems().addAll(isEng ? "Name ASC" : "Название ASC", isEng ? "Name DESC" : "Название DESC", isEng ? "Price ASC" : "Цена ASC", isEng ? "Price DESC" : "Цена DESC", isEng ? "Number ASC" : "Кол-во ASC", isEng ? "Number DESC" : "Кол-во DESC", "Id ASC", "Id DESC");
         sortBtn.setText(isEng ? "Sort" : "Сортировка");
         filterChooseBox.getSelectionModel().clearSelection();
         filterChooseBox.getItems().clear();
-        filterChooseBox.getItems().addAll(
-                isEng ? "Price > N" : "Цена > N",
-                isEng ? "Price < N" : "Цена < N",
-                isEng ? "Number > N" : "Кол-во > N",
-                isEng ? "Number < N" : "Кол-во < N",
-                "Id < N", "Id > N"
-        );
+        filterChooseBox.getItems().addAll(isEng ? "Price > N" : "Цена > N", isEng ? "Price < N" : "Цена < N", isEng ? "Number > N" : "Кол-во > N", isEng ? "Number < N" : "Кол-во < N", "Id < N", "Id > N");
         filterBtn.setText(isEng ? "Filter" : "Фильтр");
         methodBox.getSelectionModel().clearSelection();
         methodBox.getItems().clear();
-        methodBox.getItems().addAll(
-                isEng ? "Search" : "Поиск",
-                isEng ? "Sort" : "Сортировка",
-                isEng ? "Filter" : "Фильтровка");
+        methodBox.getItems().addAll(isEng ? "Search" : "Поиск", isEng ? "Sort" : "Сортировка", isEng ? "Filter" : "Фильтровка");
         dropBtn.setText(isEng ? "Drop" : "Сброс");
-        labelCriteria.setText(isEng ? "<- Select\nthe criteria"
-                : "<- Выберите\nкритерий");
-        labelFilter.setText(isEng ? "<- Select\nthe criteria"
-                : "<- Выберите\nкритерий");
+        labelCriteria.setText(isEng ? "<- Select\nthe criteria" : "<- Выберите\nкритерий");
+        labelFilter.setText(isEng ? "<- Select\nthe criteria" : "<- Выберите\nкритерий");
     }
 
     private void fillTheVBox(List<Goods> goodsList) {
@@ -350,8 +309,7 @@ public class GoodsWindowController {
         anchorPaneContainer.setPrefHeight(22 + goodsList.size() * 22);
         containerOfGoodsPanes.setPrefHeight(22 + goodsList.size() * 22);
         for (Goods goods : goodsList) {
-            containerOfGoodsPanes.
-                    getChildren().add(new GoodsPane(goods));
+            containerOfGoodsPanes.getChildren().add(new GoodsPane(goods));
         }
     }
 }
