@@ -7,7 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import project.entity.Category;
+import project.entity.Goods;
+import project.handlers.HibernateUtility;
 import project.other.CategoryPane;
 import project.handlers.Handler;
 
@@ -82,6 +86,52 @@ public class CategoriesWindowController {
             Handler.openModalWindow("enterCategoryToEditWindow");
             fillTheVBox(Handler.getCategories());
         });
+        searchBtn.setOnAction(_ -> searchCategories());
+    }
+
+    private void searchCategories() {
+        boolean isInt = false;
+        boolean isEng = Handler.isEng();
+        if (criteriaChooseBox.getSelectionModel().getSelectedItem() == null || criteriaChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
+            Handler.openInfoAlert(isEng ? "SELECT PARAMETERS FOR THE SEARCH" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ПОИСКА", isEng ? "First select parameters and try to search again" : "Сначала выберите параметры и попробуйте поиск ещё раз.");
+            return;
+        }
+        if (substringField.getText().isEmpty()) {
+            Handler.openInfoAlert(isEng ? "THE CRITERIA FOR SEARCH ARE NOT DEFINED" : "КРИТЕРИЙ ПОИСКА НЕ ОПРЕДЕЛЕН", isEng ? "First enter the criteria for search." : "Сначала введите критерий для поиска.");
+            return;
+        }
+        String criteria = criteriaChooseBox.getSelectionModel().getSelectedItem();
+        String substring = substringField.getText();
+        Session session = HibernateUtility.getCurrentSession();
+        String hql = "from Category where enterprise = :enterprise and ";
+        switch (criteria) {
+            case "Name":
+            case "Название":
+                hql += "name like :substring";
+                break;
+            case "Id":
+            case "Номер":
+                hql += "id = :substring";
+                isInt = true;
+                break;
+            default:
+                Handler.openInfoAlert(isEng ? "INVALID CRITERIA SELECTED" : "НЕДОПУСТИМЫЙ КРИТЕРИЙ", isEng ? "Please select valid criteria." : "Пожалуйста, выберите допустимый критерий.");
+                return;
+        }
+        Query<Category> query = session.createQuery(hql, Category.class);
+        query.setParameter("enterprise", Handler.getCurrentEnterprise());
+        if (isInt) {
+            try {
+                query.setParameter("substring", Integer.valueOf(substring));
+            } catch (NumberFormatException e) {
+                Handler.openErrorAlert(isEng ? "YOU HAVE ENTERED CHARACTERS INSTEAD OF DIGITS" : "ВЫ ВВЕЛИ СИМВОЛЫ ВМЕСТО ЦИФР", isEng ? "Please, enter digits only." : "Пожалуйста, введите только цифры.");
+                return;
+            }
+        } else {
+            query.setParameter("substring", "%" + substring + "%");
+        }
+        List<Category> categories = query.list();
+        fillTheVBox(categories);
     }
 
     private void changeLanguage() {
@@ -104,8 +154,7 @@ public class CategoriesWindowController {
         criteriaChooseBox.getSelectionModel().clearSelection();
         criteriaChooseBox.getItems().clear();
         criteriaChooseBox.getItems().addAll(isEng ? "Id" : "Номер",
-                isEng ? "Name" : "Название",
-                isEng ? "Number" : "Количество");
+                isEng ? "Name" : "Название");
         dropBtn.setText(isEng ? "Drop" : "Сброс");
         labelCriteria.setText(isEng ? "<- Select\nthe criteria"
                 : "<- Выберите\nкритерий");

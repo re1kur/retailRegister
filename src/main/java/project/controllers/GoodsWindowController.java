@@ -118,7 +118,7 @@ public class GoodsWindowController {
         sortBtn.setOnAction(_ -> sortGoods());
         filterBtn.setOnAction(_ -> filterGoods());
         editBtn.setOnAction(_ ->
-            Handler.openModalWindow("enterGoodsToEditWindow"));
+                Handler.openModalWindow("enterGoodsToEditWindow"));
     }
 
     private void filterGoods() {

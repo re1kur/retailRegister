@@ -15,8 +15,7 @@ public class MeasureUnitPane extends VBox {
     public MeasureUnitPane(MeasureUnit measureUnit) {
         MeasureUnitPane.measureUnit = measureUnit;
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(
-                "/scenes/unitsMeasurementPane.fxml"));
+        loader.setLocation(getClass().getResource("/scenes/unitsMeasurementPane.fxml"));
         Parent root = null;
         try {
             root = loader.load();

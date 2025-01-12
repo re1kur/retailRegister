@@ -36,6 +36,6 @@ public class IntroduceWindowController {
         firstStringLabel.setText(" Здравствуйте. Это приложение было соз");
         secondStringLabel.setText("-дано только для проверки своих навыков.");
         thirdStringLabel.setText(" Я использовал такие библиотеки, как");
-        fourthStringLabel.setText(" Hibernate(postgreSQL), minIO.");
+        fourthStringLabel.setText(" Hibernate(postgreSQL), minIO, JavaFX.");
     }
 }

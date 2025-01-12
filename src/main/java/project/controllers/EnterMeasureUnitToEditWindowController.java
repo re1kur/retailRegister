@@ -23,6 +23,7 @@ public class EnterMeasureUnitToEditWindowController {
 
     @FXML
     private Label label;
+
     @FXML
     void initialize() {
         setLanguageInterface();
@@ -36,7 +37,7 @@ public class EnterMeasureUnitToEditWindowController {
         int id;
         try {
             id = Integer.parseInt(field.getText());
-            if (!exists(session,id)) {
+            if (!exists(session, id)) {
                 Handler.openInfoAlert(isEng ? "ENTERED MEASURE UNIT DOESN'T EXISTS" : "ВВЕДЕННАЯ ЕД. ИЗМЕРЕНИЯ НЕ СУЩЕСТВУЕТ",
                         isEng ? "Try other one." : "Попробуйте другую.");
                 return;
@@ -57,6 +58,7 @@ public class EnterMeasureUnitToEditWindowController {
         label.setText(isEng ? "Enter the measure unit id to edit" : "Введите id единицы измерения\n для его редактирования");
         editBtn.setText(isEng ? "Edit" : "Редактировать");
     }
+
     private boolean exists(Session session, int id) {
         return session.find(MeasureUnit.class, id) != null;
     }

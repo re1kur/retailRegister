@@ -31,6 +31,7 @@ public class AddCategoryWindowController {
         addBtn.setOnAction(_ -> addCategory());
         closeWindowBtn.setOnAction(_ -> nameField.getScene().getWindow().hide());
     }
+
     private boolean checkFields(boolean isEng) {
         try {
             String name = nameField.getText();

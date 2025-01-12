@@ -14,6 +14,9 @@ import java.io.IOException;
 
 public class MainWindowController {
     @FXML
+    private Button personalAccountBtn;
+
+    @FXML
     private Button categoriesBtn;
 
     @FXML
@@ -44,34 +47,43 @@ public class MainWindowController {
     private Button exitAccountBtn;
 
     @FXML
-    void initialize () {
+    void initialize() {
         setLanguageInterface();
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
         introduceBtn.setOnAction(_ -> Handler.openIntroduceWindow());
         goodsBtn.setOnAction(_ ->
                 Handler.changeScene("goodsWindow"));
-        categoriesBtn.setOnAction(_ ->Handler.changeScene("categoriesWindow"));
+        categoriesBtn.setOnAction(_ -> Handler.changeScene("categoriesWindow"));
         unitsMeasurementBtn.setOnAction(_ -> Handler.changeScene("unitsMeasurementWindow"));
         exitAccountBtn.setOnAction(_ -> {
             Handler.setCurrentEnterprise(null);
+            Handler.setCurrentEmployee(null);
+            Handler.setIsEnterpriseLogging(null);
             Handler.changeScene("logInWindow");
+        });
+        personalAccountBtn.setOnAction(_ ->
+        {
+            if (!Handler.getIsEnterpriseLogging()) Handler.changeScene("personalAccountWindow");
+            else {
+                Handler.changeScene("manageEnterpriseWindow");
+            }
         });
     }
 
-    private void changeLanguage () {
+    private void changeLanguage() {
         Handler.setEng(!Handler.isEng());
         setLanguageInterface();
 
     }
 
-    private void setLanguageInterface () {
+    private void setLanguageInterface() {
         boolean isEng = Handler.isEng();
-        changeLanguageBtn.setText(isEng ? "en": "ru");
-        goodsBtn.setText(isEng ? "Goods": "Товары");
-        reportingBtn.setText(isEng ? "Reporting": "Отчетность");
-        settingsBtn.setText(isEng ? "Settings": "Настройки");
-        supportBtn.setText(isEng ? "Support": "Поддержка");
+        changeLanguageBtn.setText(isEng ? "en" : "ru");
+        goodsBtn.setText(isEng ? "Goods" : "Товары");
+        reportingBtn.setText(isEng ? "Reporting" : "Отчетность");
+        settingsBtn.setText(isEng ? "Settings" : "Настройки");
+        supportBtn.setText(isEng ? "Support" : "Поддержка");
         categoriesBtn.setText(isEng ? "Categories" : "Категории");
         unitsMeasurementBtn.setText(isEng ? "Units of\nmeasurement" : "Единицы\nизмерения");
         exitAccountBtn.setText(isEng ? "Exit" : "Выйти");

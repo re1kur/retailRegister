@@ -8,7 +8,7 @@ import java.util.Collection;
 
 @Data
 @Entity
-@Table (name = "units_measure")
+@Table(name = "units_measure")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -32,5 +32,7 @@ public class MeasureUnit implements Serializable {
     @ToString.Exclude
     private Collection<Goods> goods;
 
-    public String toString() {return symbol + "|" + name;}
+    public String toString() {
+        return symbol + "|" + name;
+    }
 }

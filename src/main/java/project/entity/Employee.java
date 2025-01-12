@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table (name = "employees")
+@Table(name = "employees")
 public class Employee implements Serializable {
     @Id
     private String email;
@@ -21,11 +21,12 @@ public class Employee implements Serializable {
 
     private String lastname;
 
-    @Enumerated(EnumType.STRING)
-    private ApplicationRights position;
+    private String position;
 
-    @Column (name = "pin_code")
-    private Integer pinCode;
+    @Enumerated(EnumType.STRING)
+    private ApplicationRights rights;
+
+    private String password;
 
     @JoinColumn(name = "entp_id")
     @ManyToOne(fetch = FetchType.LAZY)

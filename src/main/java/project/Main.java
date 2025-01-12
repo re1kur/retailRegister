@@ -9,6 +9,7 @@ import javafx.stage.StageStyle;
 import project.handlers.Handler;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -21,8 +22,8 @@ public class Main extends Application {
         Handler.setMainStage(stage);
         Stage mainStage = Handler.getMainStage();
         Parent root = FXMLLoader
-                .load(getClass()
-                .getResource("/scenes/logInWindow.fxml"));
+                .load(Objects.requireNonNull(getClass()
+                        .getResource("/scenes/logInWindow.fxml")));
         mainStage.setScene(new Scene(root));
         mainStage.initStyle(StageStyle.UNDECORATED);
         mainStage.show();

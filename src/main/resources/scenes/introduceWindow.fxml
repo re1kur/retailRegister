@@ -18,7 +18,7 @@
         </Button>
       <Label fx:id="firstStringLabel" layoutX="25.0" layoutY="29.0" prefHeight="30.0" prefWidth="250.0" text=" Hello there. This application have created to" />
       <Label fx:id="secondStringLabel" layoutX="25.0" layoutY="60.0" prefHeight="30.0" prefWidth="250.0" text=" test my skills only. I used libraries such as" />
-      <Label fx:id="thirdStringLabel" layoutX="25.0" layoutY="90.0" prefHeight="30.0" prefWidth="250.0" text=" Hibernate(postgreSQL), minIO. " />
+      <Label fx:id="thirdStringLabel" layoutX="25.0" layoutY="90.0" prefHeight="30.0" prefWidth="250.0" text=" Hibernate(postgreSQL), minIO, JavaFX." />
       <Label layoutX="25.0" layoutY="193.0" prefHeight="30.0" prefWidth="250.0" text="by re1kur (github)" />
       <Label fx:id="fourthStringLabel" layoutX="25.0" layoutY="120.0" prefHeight="30.0" prefWidth="250.0" />
     </children>

@@ -55,5 +55,13 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <Button fx:id="logInEmployeeBtn" alignment="CENTER" layoutX="125.0" layoutY="289.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="250.0" style="-fx-background-color: transparent;" text="To log in as an employee" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

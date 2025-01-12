@@ -95,5 +95,13 @@
             <Reflection fraction="0.61" topOpacity="0.42" />
          </effect>
       </Button>
+      <Button fx:id="personalAccountBtn" layoutX="72.4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="⟰" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

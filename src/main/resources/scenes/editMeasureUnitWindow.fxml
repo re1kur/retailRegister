@@ -48,7 +48,7 @@
             </Label>
             </children>
         </AnchorPane>
-        <Button fx:id="backBtn" alignment="CENTER" contentDisplay="TOP" layoutX="38.0" layoutY="301.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="back" textFill="WHITE">
+        <Button fx:id="backBtn" alignment="CENTER" contentDisplay="TOP" layoutX="38.0" layoutY="301.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="back" textFill="WHITE">
             <font>
                 <Font name="Calibri" size="11.0" />
             </font>
@@ -56,7 +56,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="editBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="375.0" layoutY="301.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="Редактировать" textFill="WHITE">
+        <Button fx:id="applyBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="387.0" layoutY="301.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 7;" text="Применить" textFill="WHITE">
             <font>
                 <Font name="Calibri" size="11.0" />
             </font>

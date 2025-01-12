@@ -36,7 +36,7 @@ public class EnterGoodsToEditWindowController {
         int id;
         try {
             id = Integer.parseInt(field.getText());
-            if (!exists(session,id)) {
+            if (!exists(session, id)) {
                 Handler.openInfoAlert(isEng ? "ENTERED GOODS DOESN'T EXISTS" : "ВВЕДЕННЫЙ ТОВАР НЕ СУЩЕСТВУЕТ",
                         isEng ? "Try other one." : "Попробуйте другой.");
                 return;

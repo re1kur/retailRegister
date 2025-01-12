@@ -7,7 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import project.entity.Category;
 import project.entity.MeasureUnit;
+import project.handlers.HibernateUtility;
 import project.other.MeasureUnitPane;
 import project.handlers.Handler;
 
@@ -34,7 +38,7 @@ public class UnitsMeasurementWindowController {
     private VBox containerOfUnitPanes;
 
     @FXML
-    private ChoiceBox<?> criteriaChooseBox;
+    private ChoiceBox<String> criteriaChooseBox;
 
     @FXML
     private Button deleteBtn;
@@ -81,6 +85,62 @@ public class UnitsMeasurementWindowController {
             Handler.openModalWindow("enterMeasureUnitToEditWindow");
             fillTheVBox(Handler.getUnitsMeasurement());
         });
+        searchBtn.setOnAction(_ -> searchUnits());
+        dropBtn.setOnAction(_ -> dropSearch());
+    }
+
+    public void dropSearch() {
+        criteriaChooseBox.getSelectionModel().clearSelection();
+        fillTheVBox(Handler.getUnitsMeasurement());
+    }
+
+    private void searchUnits() {
+        boolean isInt = false;
+        boolean isEng = Handler.isEng();
+        if (criteriaChooseBox.getSelectionModel().getSelectedItem() == null || criteriaChooseBox.getSelectionModel().getSelectedItem().isEmpty()) {
+            Handler.openInfoAlert(isEng ? "SELECT PARAMETERS FOR THE SEARCH" : "ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ПОИСКА", isEng ? "First select parameters and try to search again" : "Сначала выберите параметры и попробуйте поиск ещё раз.");
+            return;
+        }
+        if (substringField.getText().isEmpty()) {
+            Handler.openInfoAlert(isEng ? "THE CRITERIA FOR SEARCH ARE NOT DEFINED" : "КРИТЕРИЙ ПОИСКА НЕ ОПРЕДЕЛЕН", isEng ? "First enter the criteria for search." : "Сначала введите критерий для поиска.");
+            return;
+        }
+        String criteria = criteriaChooseBox.getSelectionModel().getSelectedItem();
+        String substring = substringField.getText();
+        Session session = HibernateUtility.getCurrentSession();
+        String hql = "from MeasureUnit where enterprise = :enterprise and ";
+        switch (criteria) {
+            case "Name":
+            case "Название":
+                hql += "name like :substring";
+                break;
+            case "Id":
+            case "Номер":
+                hql += "id = :substring";
+                isInt = true;
+                break;
+            case "Symbol":
+            case "Обозначение":
+                hql += "symbol like :substring";
+                break;
+            default:
+                Handler.openInfoAlert(isEng ? "INVALID CRITERIA SELECTED" : "НЕДОПУСТИМЫЙ КРИТЕРИЙ", isEng ? "Please select valid criteria." : "Пожалуйста, выберите допустимый критерий.");
+                return;
+        }
+        Query<MeasureUnit> query = session.createQuery(hql, MeasureUnit.class);
+        query.setParameter("enterprise", Handler.getCurrentEnterprise());
+        if (isInt) {
+            try {
+                query.setParameter("substring", Integer.valueOf(substring));
+            } catch (NumberFormatException e) {
+                Handler.openErrorAlert(isEng ? "YOU HAVE ENTERED CHARACTERS INSTEAD OF DIGITS" : "ВЫ ВВЕЛИ СИМВОЛЫ ВМЕСТО ЦИФР", isEng ? "Please, enter digits only." : "Пожалуйста, введите только цифры.");
+                return;
+            }
+        } else {
+            query.setParameter("substring", "%" + substring + "%");
+        }
+        List<MeasureUnit> measureUnits = query.list();
+        fillTheVBox(measureUnits);
     }
 
     private void changeLanguage() {
@@ -100,6 +160,12 @@ public class UnitsMeasurementWindowController {
         idLabel.setText(isEng ? "Id" : "Номер");
         nameLabel.setText(isEng ? "Name" : "Название");
         symbolLabel.setText(isEng ? "Symbol" : "Обозначение");
+        criteriaChooseBox.getSelectionModel().clearSelection();
+        criteriaChooseBox.getItems().clear();
+        criteriaChooseBox.getItems().addAll(isEng ? "Id" : "Номер",
+                isEng ? "Name" : "Название",
+                isEng ? "Symbol" : "Обозначение");
+        dropBtn.setText(isEng ? "Drop" : "Сброс");
     }
 
     private void fillTheVBox(List<MeasureUnit> unitsMeasurement) {

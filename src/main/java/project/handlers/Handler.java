@@ -12,10 +12,7 @@ import lombok.Setter;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import project.Main;
-import project.entity.Category;
-import project.entity.Enterprise;
-import project.entity.Goods;
-import project.entity.MeasureUnit;
+import project.entity.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,6 +42,26 @@ public class Handler {
     @Setter
     @Getter
     private static MeasureUnit enteredMeasureUnit;
+
+    @Setter
+    @Getter
+    private static Employee enteredEmployee;
+
+    @Setter
+    @Getter
+    private static Employee currentEmployee;
+
+    @Setter
+    @Getter
+    private static Boolean isEnterpriseLogging;
+
+    public static List<Employee> getEmployees() {
+        Session session = HibernateUtility.getCurrentSession();
+        Query<Employee> query = session.createQuery("from Employee where enterprise = :enterprise",
+                Employee.class);
+        query.setParameter("enterprise", getCurrentEnterprise());
+        return query.getResultList();
+    }
 
     public static void openModalWindow(String fxmlFileName) {
         Parent root = null;

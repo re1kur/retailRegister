@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ManageEnterpriseWindowController">
+   <children>
+      <Button fx:id="changeLanguageBtn" layoutX="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="introduceBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent; -fx-border-radius: 50;" text="?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="closeWindowBtn" layoutX="458.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
+         <font>
+            <Font name="Cambria Bold Italic" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
+      <Label layoutX="149.0" layoutY="7.0" />
+      <AnchorPane fx:id="enterpriseDataPane" layoutX="14.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="400.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: gray; -fx-border-width: 2;">
+         <children>
+            <TextField fx:id="nameTextField" alignment="CENTER" editable="false" focusTraversable="false" layoutX="110.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" style="-fx-background-radius: 7; -fx-background-color: #3F888F;">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <effect>
+                  <ColorAdjust contrast="0.5" />
+               </effect>
+            </TextField>
+            <Label fx:id="nameLabel" alignment="CENTER" layoutX="110.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Enterprise name:" textFill="#3f888f">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="typeTextField" alignment="CENTER" editable="false" focusTraversable="false" layoutX="110.0" layoutY="89.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" style="-fx-background-radius: 7; -fx-background-color: #3F888F;">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <effect>
+                  <ColorAdjust contrast="0.5" />
+               </effect>
+            </TextField>
+            <Label fx:id="typeLabel" alignment="CENTER" layoutX="110.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Enterprise type:" textFill="#3f888f">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailTextField" alignment="CENTER" editable="false" focusTraversable="false" layoutX="110.0" layoutY="145.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" style="-fx-background-radius: 7; -fx-background-color: #3F888F;">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <effect>
+                  <ColorAdjust contrast="0.5" />
+               </effect>
+            </TextField>
+            <Label fx:id="emailLabel" alignment="CENTER" layoutX="110.0" layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Corporate e-mail:" textFill="#3f888f">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="passwordTextField" alignment="CENTER" editable="false" focusTraversable="false" layoutX="110.0" layoutY="254.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" style="-fx-background-radius: 7; -fx-background-color: #3F888F;">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <effect>
+                  <GaussianBlur radius="7.0" />
+               </effect>
+            </TextField>
+            <Label fx:id="passwordLabel" alignment="CENTER" layoutX="110.0" layoutY="234.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Password to log in:" textFill="#3f888f">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addressTextField" alignment="CENTER" editable="false" focusTraversable="false" layoutX="110.0" layoutY="201.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" style="-fx-background-radius: 7; -fx-background-color: #3F888F;">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <effect>
+                  <ColorAdjust contrast="0.5" />
+               </effect>
+            </TextField>
+            <Label fx:id="addressLabel" alignment="CENTER" layoutX="110.0" layoutY="181.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="Enterprise address:" textFill="#3f888f">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="visibilityBtn" alignment="CENTER" ellipsisString="-" layoutX="299.0" layoutY="259.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #3F888F; -fx-background-radius: 100;" textFill="#3f888f" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri Bold" size="9.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="visibilityLabel" alignment="CENTER" layoutX="321.0" layoutY="259.0" text="Visibility" textFill="#3f888f">
+               <font>
+                  <Font name="Calibri Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="employeesPane" layoutX="14.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="400.0" style="-fx-border-color: white; -fx-background-color: #3F888F;" visible="false">
+         <content>
+            <AnchorPane fx:id="anchorPaneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="288.0" prefWidth="382.0" style="-fx-background-color: transparent;">
+               <children>
+                  <VBox fx:id="containerOfEmployeePanes" fillWidth="false" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="384.0" style="-fx-background-color: transparent;" />
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="385.0" style="-fx-background-color: transparent;">
+                     <children>
+                        <Label fx:id="employeesLabel" alignment="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="395.0" style="-fx-background-color: #3F888F;" text="Employees" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold Italic" size="14.0" />
+                           </font>
+                           <effect>
+                              <Glow level="0.49" />
+                           </effect>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="addBtn" alignment="CENTER" ellipsisString="-" layoutX="428.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Add" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" visible="false">
+         <font>
+            <Font name="Calibri Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="swapDataBtn" alignment="CENTER" ellipsisString="-" layoutX="421.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: white; -fx-border-color: gray; -fx-border-width: 0.5; -fx-border-radius: 15; -fx-background-radius: 15;" text="Employees" textFill="#3f888f" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calibri Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="backBtn" alignment="CENTER" ellipsisString="-" layoutX="425.0" layoutY="309.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 20;" text="Back" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calibri Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="editBtn" alignment="CENTER" ellipsisString="-" layoutX="428.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: White;" text="Edit" textFill="#3f888f" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Calibri Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

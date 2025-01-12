@@ -37,7 +37,7 @@ public class EnterCategoryToEditWindowController {
         int id;
         try {
             id = Integer.parseInt(field.getText());
-            if (!exists(session,id)) {
+            if (!exists(session, id)) {
                 Handler.openInfoAlert(isEng ? "ENTERED CATEGORY DOESN'T EXISTS" : "ВВЕДЕННАЯ КАТЕГОРИЯ НЕ СУЩЕСТВУЕТ",
                         isEng ? "Try other one." : "Попробуйте другую.");
                 return;
@@ -58,6 +58,7 @@ public class EnterCategoryToEditWindowController {
         label.setText(isEng ? "Enter the category id to edit" : "Введите id категории для редактирования");
         editBtn.setText(isEng ? "Edit" : "Редактировать");
     }
+
     private boolean exists(Session session, int id) {
         return session.find(Category.class, id) != null;
     }

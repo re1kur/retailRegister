@@ -21,7 +21,7 @@ public class EditCategoryWindowController {
     private Button closeWindowBtn;
 
     @FXML
-    private Button editBtn;
+    private Button applyBtn;
 
     @FXML
     private Label label;
@@ -42,7 +42,7 @@ public class EditCategoryWindowController {
     void initialize() {
         setLanguageInterface();
         backBtn.setOnAction(_ -> Handler.changeScene("categoriesWindow"));
-        editBtn.setOnAction(_ -> edit());
+        applyBtn.setOnAction(_ -> edit());
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
     }
@@ -56,7 +56,7 @@ public class EditCategoryWindowController {
         boolean isEng = Handler.isEng();
         label.setText(isEng ? "Enter new name of category ↓" : "Введите новое название категории ↓");
         nameField.setText(Handler.getEnteredCategory().getName());
-        editBtn.setText(isEng ? "Edit" : "Редактировать");
+        applyBtn.setText(isEng ? "Apply" : "Применить");
         backBtn.setText(isEng ? "Categories" : "Категории");
         label2.setText(isEng ? "Past name:" : "Прошлое название:");
         pastNameLabel.setText(Handler.getEnteredCategory().getName());

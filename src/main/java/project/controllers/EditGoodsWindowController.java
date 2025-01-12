@@ -33,7 +33,7 @@ public class EditGoodsWindowController {
     private Button closeWindowBtn;
 
     @FXML
-    private Button editBtn;
+    private Button applyBtn;
 
     @FXML
     private Label enteredLabel;
@@ -70,7 +70,7 @@ public class EditGoodsWindowController {
         measureUnitsChoiceBox.getItems().addAll(Handler.getUnitsMeasurement());
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
-        editBtn.setOnAction(_ -> editGoods());
+        applyBtn.setOnAction(_ -> editGoods());
         backBtn.setOnAction(_ -> Handler.changeScene("goodsWindow"));
     }
 
@@ -143,7 +143,7 @@ public class EditGoodsWindowController {
     private void setLanguageInterface() {
         boolean isEng = Handler.isEng();
         backBtn.setText(isEng ? "Goods" : "Товары");
-        editBtn.setText(isEng ? "Edit" : "Редактировать");
+        applyBtn.setText(isEng ? "Apply" : "Применить");
         changeLanguageBtn.setText(isEng ? "en" : "ru");
         nameField.setPromptText(isEng ? "Product name" : "Название товара");
         numberField.setPromptText(isEng ? "Number of products" : "Количество товара");
@@ -157,7 +157,8 @@ public class EditGoodsWindowController {
         enteredLabel.setText(Handler.getEnteredGoods().toString());
         priceField.setPromptText(isEng ? "Price of one goods" : "Цена одного товара");
     }
-    private void setGoodsParameters () {
+
+    private void setGoodsParameters() {
         Goods entered = Handler.getEnteredGoods();
         nameField.setText(entered.getName());
         numberField.setText(entered.getNumber().toString());

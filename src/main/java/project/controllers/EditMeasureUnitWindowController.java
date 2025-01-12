@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import project.entity.Category;
 import project.entity.MeasureUnit;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
@@ -25,7 +24,7 @@ public class EditMeasureUnitWindowController {
     private Button closeWindowBtn;
 
     @FXML
-    private Button editBtn;
+    private Button applyBtn;
 
     @FXML
     private Label label;
@@ -49,7 +48,7 @@ public class EditMeasureUnitWindowController {
     void initialize() {
         setLanguageInterface();
         backBtn.setOnAction(_ -> Handler.changeScene("unitsMeasurementWindow"));
-        editBtn.setOnAction(_ -> edit());
+        applyBtn.setOnAction(_ -> edit());
         closeWindowBtn.setOnAction(_ -> Handler.closeMainStage());
         changeLanguageBtn.setOnAction(_ -> changeLanguage());
     }
@@ -64,7 +63,7 @@ public class EditMeasureUnitWindowController {
         label.setText(isEng ? "Enter new name of measure unit ↓" : "Введите новое название ед.измерения ↓");
         nameField.setText(Handler.getEnteredMeasureUnit().getName());
         nameField1.setText(Handler.getEnteredMeasureUnit().getSymbol());
-        editBtn.setText(isEng ? "Edit" : "Редактировать");
+        applyBtn.setText(isEng ? "Apply" : "Применить");
         backBtn.setText(isEng ? "Measure units" : "Ед.измерения");
         label2.setText(isEng ? "Past data:" : "Прошлые данные:");
         pastUnitLabel.setText(Handler.getUnitsMeasurement().toString());

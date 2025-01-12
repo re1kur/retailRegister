@@ -11,8 +11,7 @@ import java.util.logging.Logger;
 public class HibernateUtility {
     private static Session currentSession;
     private static SessionFactory sessionFactory;
-    private static final Logger logger = Logger
-            .getLogger(HibernateUtility.class.getName());
+    private static final Logger logger = Logger.getLogger(HibernateUtility.class.getName());
 
     private static void buildSessionFactory() {
         if (sessionFactory == null) {
@@ -22,9 +21,9 @@ public class HibernateUtility {
             configuration.addAnnotatedClass(Enterprise.class);
             HibernateUtility.sessionFactory = configuration.buildSessionFactory();
         }
-            HibernateUtility.currentSession = sessionFactory.openSession();
-            logger.info("Session factory: " + HibernateUtility.sessionFactory);
-            logger.info("Current session: " + HibernateUtility.currentSession.toString());
+        HibernateUtility.currentSession = sessionFactory.openSession();
+        logger.info("Session factory: " + HibernateUtility.sessionFactory);
+        logger.info("Current session: " + HibernateUtility.currentSession.toString());
     }
 
     public static Session getCurrentSession() {
