@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: #3F888F; -fx-border-color: white; -fx-border-width: 0.5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.SupportReportingWindowController">
+   <children>
+      <Button fx:id="changeLanguageBtn" layoutX="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-border-radius: 13;" text="en" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="introduceBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent; -fx-border-radius: 50;" text="?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="closeWindowBtn" layoutX="456.6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="✕" textFill="RED">
+         <font>
+            <Font name="Cambria Bold Italic" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Line endX="500.0" layoutY="30.0" stroke="WHITE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="30.0" layoutX="95.0" layoutY="40.0" stroke="WHITE" strokeType="INSIDE" width="310.0" />
+      <TextField fx:id="subjectField" alignment="CENTER" focusTraversable="false" layoutX="100.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="300.0" promptText="Report subject" style="-fx-background-color: white; -fx-border-color: black;">
+         <font>
+            <Font name="Calibri Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label fx:id="contentLabel" alignment="CENTER" layoutX="95.0" layoutY="76.0" prefHeight="18.0" prefWidth="310.0" text="Content of report" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="220.0" layoutX="55.0" layoutY="95.0" stroke="WHITE" strokeType="INSIDE" width="390.0" />
+      <TextArea fx:id="contentField" layoutX="60.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="380.0" style="-fx-background-color: white; -fx-border-color: black;" />
+      <Button fx:id="backBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 8;" text="Menu" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="submitBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="378.0" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: white; -fx-border-radius: 8; -fx-border-color: gray; -fx-background-radius: 8;" text="Submit" textFill="#3f888f">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="11.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

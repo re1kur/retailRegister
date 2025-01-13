@@ -9,6 +9,9 @@ import project.entity.Enterprise;
 import project.handlers.Handler;
 import project.handlers.HibernateUtility;
 
+import java.io.IOException;
+import java.util.Objects;
+
 public class EditEnterpriseWindowController {
     private Enterprise current;
 
@@ -106,6 +109,8 @@ public class EditEnterpriseWindowController {
     }
 
     private void edit() {
+        if (!checkFields()) return;
+
         current.setEmail(emailField.getText());
         current.setName(nameField.getText());
         current.setType(typeField.getText());
@@ -117,5 +122,38 @@ public class EditEnterpriseWindowController {
         session.getTransaction().commit();
 
         Handler.changeScene("manageEnterpriseWindow");
+    }
+
+    private boolean checkFields() {
+        boolean isEng = Handler.isEng();
+        try {
+            if (nameField.getText().length() > 30) {
+                throw new IOException(isEng ? "Incorrect name.\nThe name must be lesser than 30 chars." : "Неправильное название.\nНазвание должно быть меньше 30 символов");
+            }
+            if (nameField.getText().isEmpty() | emailField.getText().isEmpty() | typeField.getText().isEmpty() | passwordField.getText().isEmpty()) {
+                throw new IOException(isEng ? "The field(s) is empty.\nEnter values in the empty field(s) and try again." : "Поле(поля) пустое.\nВведите данные в пустые поля и попробуйте еще раз.");
+            }
+            if (emailField.getText().length() > 256) {
+                throw new IOException(
+                        isEng ? "Incorrect email.\nThe email must be lesser than 256 chars." :
+                                "Неправильная почта.\nПочта должна быть меньше 256 символов.");
+            }
+            if (!Handler.parseMail(emailField.getText())) {
+                return false;
+            }
+            if (typeField.getText().length() > 30) {
+                throw new IOException(isEng ? "Incorrect type\nType must be lesser than 30 chars."
+                        : "Неправильный тип.\nТип должен быть меньше 30 символов.");
+            }
+            if (passwordField.getText().length() > 64) {
+                throw new IOException(isEng ? "Incorrect password\nPassword must be lesser than 64 chars." :
+                        "Неправильный пароль.\nПароль должен быть меньше 64 символов");
+            }
+        } catch (IOException e) {
+            Handler.openErrorAlert(isEng ? "INVALID ENTERING" : "НЕПРАВИЛЬНЫЙ ВВОД",
+                    e.getMessage());
+            return false;
+        }
+        return true;
     }
 }

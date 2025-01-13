@@ -17,6 +17,8 @@ import project.entity.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Handler {
     @Setter
@@ -54,6 +56,23 @@ public class Handler {
     @Setter
     @Getter
     private static Boolean isEnterpriseLogging;
+
+    public static boolean parseMail(String mail) {
+        Pattern invalidChars = Pattern.compile("[^a-zA-Z0-9@.]");
+        Matcher matcher = invalidChars.matcher(mail);
+        if (matcher.find()) {
+            Handler.openErrorAlert("INVALID EMAIL", "Enter the email without invalid characters.");
+            return false;
+        }
+        Pattern correct = Pattern.compile("^[a-zA-Z0-9.]{1,64}" + "@[a-zA-Z0-9.]{1,126}\\.[a-zA-Z]{2,63}$");
+        matcher = correct.matcher(mail);
+        if (matcher.matches()) {
+            return true;
+        } else {
+            Handler.openErrorAlert("INVALID EMAIL", "Enter a valid email address.");
+            return false;
+        }
+    }
 
     public static List<Employee> getEmployees() {
         Session session = HibernateUtility.getCurrentSession();

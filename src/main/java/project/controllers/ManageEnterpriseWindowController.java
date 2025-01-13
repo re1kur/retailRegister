@@ -113,7 +113,7 @@ public class ManageEnterpriseWindowController {
                 addBtn.setVisible(true);
                 editBtn.setVisible(false);
                 enterpriseDataPane.setVisible(false);
-                swapDataBtn.setText(Handler.isEng() ? "Enterprise\nData" : "Данные\nпредприятия");
+                swapDataBtn.setText(Handler.isEng() ? "Data" : "Данные");
             }
             else {
                 employeesPane.setVisible(false);
@@ -151,9 +151,9 @@ public class ManageEnterpriseWindowController {
 
         addBtn.setText(isEng ? "Add" : "Добавить");
         if (!employeesPane.isVisible()) {
-            swapDataBtn.setText(isEng ? "Enterprise\nemployees" : "Сотрудники\nпредприятия");
+            swapDataBtn.setText(isEng ? "Employees" : "Сотрудники");
         } else {
-            swapDataBtn.setText(isEng ? "Enterprise\nData" : "Данные\nпредприятия");
+            swapDataBtn.setText(isEng ? "Data" : "Данные");
         }
         backBtn.setText(isEng ? "Menu" : "Меню");
         employeesLabel.setText(isEng ? "Employees" : "Сотрудники");

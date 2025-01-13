@@ -105,7 +105,7 @@ public class SignUpWindowController {
                         isEng ? "Incorrect email.\nThe email must be lesser than 256 chars." :
                                 "Неправильная почта.\nПочта должна быть меньше 256 символов.");
             }
-            if (!parseMail(emailField.getText())) {
+            if (!Handler.parseMail(emailField.getText())) {
                 return false;
             }
             if (typeField.getText().length() > 30) {
@@ -126,22 +126,5 @@ public class SignUpWindowController {
             return false;
         }
         return true;
-    }
-
-    private boolean parseMail(String mail) {
-        Pattern invalidChars = Pattern.compile("[^a-zA-Z0-9@.]");
-        Matcher matcher = invalidChars.matcher(mail);
-        if (matcher.find()) {
-            Handler.openErrorAlert("INVALID EMAIL", "Enter the email without invalid characters.");
-            return false;
-        }
-        Pattern correct = Pattern.compile("^[a-zA-Z0-9.]{1,64}" + "@[a-zA-Z0-9.]{1,126}\\.[a-zA-Z]{2,63}$");
-        matcher = correct.matcher(mail);
-        if (matcher.matches()) {
-            return true;
-        } else {
-            Handler.openErrorAlert("INVALID EMAIL", "Enter a valid email address.");
-            return false;
-        }
     }
 }

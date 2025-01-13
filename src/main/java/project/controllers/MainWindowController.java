@@ -69,6 +69,7 @@ public class MainWindowController {
                 Handler.changeScene("manageEnterpriseWindow");
             }
         });
+        supportBtn.setOnAction(_ -> Handler.changeScene("supportReportingWindow"));
     }
 
     private void changeLanguage() {
